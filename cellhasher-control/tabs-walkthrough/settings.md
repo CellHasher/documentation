@@ -57,7 +57,7 @@ This is where you manage the key files that allow ADB to control your phones. Ea
 Cellhasher purcahses with phones pre-installed come with ADB Authoization Keys. Import the key files here.
 {% endhint %}
 
-<figure><img src="../../.gitbook/assets/Screenshot 2025-10-24 163634.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="/broken/files/tbbTB8MGslCuw1qkUnBp" alt=""><figcaption></figcaption></figure>
 
 <div align="left"><figure><img src="../../.gitbook/assets/Screenshot 2025-10-24 163944.png" alt="" width="274"><figcaption></figcaption></figure></div>
 

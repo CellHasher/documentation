@@ -2,7 +2,7 @@
 
 ## Toolbar Functions:
 
-<div align="left"><figure><img src="../../.gitbook/assets/IMG_1419 copy.png" alt=""><figcaption></figcaption></figure></div>
+<div align="left"><figure><img src="/broken/files/nulKKKexEXJzLOv9sWxJ" alt=""><figcaption></figcaption></figure></div>
 
 * Grid View: Switch to grid layout view of all devices
 * Refresh: Update the list of connected devices
@@ -13,7 +13,7 @@
 
 ## Device Functions:
 
-<div align="left"><figure><img src="../../.gitbook/assets/IMG_1419 copy3.png" alt=""><figcaption></figcaption></figure></div>
+<div align="left"><figure><img src="/broken/files/xBVjGg5sXTnwbrlecrnx" alt=""><figcaption></figcaption></figure></div>
 
 * Device Info: View detailed specifications including:
   * CPU information

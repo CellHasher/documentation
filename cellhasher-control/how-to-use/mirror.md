@@ -2,7 +2,7 @@
 
 ## Toolbar Functions:
 
-<div align="left"><figure><img src="../../.gitbook/assets/IMG_1412.PNG" alt=""><figcaption></figcaption></figure> <figure><img src="../../.gitbook/assets/IMG_1411.PNG" alt=""><figcaption></figcaption></figure></div>
+<div align="left"><figure><img src="/broken/files/bip6Fb1G2U5YsubME7mK" alt=""><figcaption></figcaption></figure> <figure><img src="/broken/files/xwO3XC6NGF9hmBadXMxC" alt=""><figcaption></figcaption></figure></div>
 
 * Back Arrow: Return to Devices Screen
 * Eye Icon: Quick view all devices
@@ -17,7 +17,7 @@
 
 ## Device List:
 
-<div align="left"><figure><img src="../../.gitbook/assets/IMG_1408.PNG" alt=""><figcaption></figcaption></figure></div>
+<div align="left"><figure><img src="/broken/files/BBAInQI1hWnD8UYhfMeH" alt=""><figcaption></figcaption></figure></div>
 
 * Tag: Customize device names
 * Mirror: Immediately start individual device mirroring
@@ -27,7 +27,7 @@
 
 ## Action Dropdowns:
 
-<div align="left"><figure><img src="../../.gitbook/assets/IMG_1407.PNG" alt=""><figcaption></figcaption></figure></div>
+<div align="left"><figure><img src="/broken/files/tuHXNRYVa2eKt9JbhyMu" alt=""><figcaption></figcaption></figure></div>
 
 * Battery Temperature Control
   * Submit custom temperature
@@ -54,7 +54,7 @@
 
 ## Grid Display Area:
 
-<figure><img src="../../.gitbook/assets/IMG_1409.PNG" alt=""><figcaption></figcaption></figure>
+<figure><img src="/broken/files/Cy2O2en9pHfvLaijbNTG" alt=""><figcaption></figcaption></figure>
 
 * The mirror feature will intiate the selected phones to appear in the grid display. The devices will appear one-at-a-time, and continue to rearrange automatically until all selected devices appear.
 * Use the window header's expand feature to show a single device full-screened.

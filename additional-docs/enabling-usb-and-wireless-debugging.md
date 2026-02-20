@@ -71,4 +71,4 @@ If you intend to use a Windows/Linux PC with Cellhasher Control, you may need to
 2. When prompted, select "Always allow USB Debugging for your computer" then click "OK".
 3. Proceed to use Cellhasher Control to now see and control your phones!
 
-<div align="left"><figure><img src="../.gitbook/assets/Screenshot 2025-10-24 151534.png" alt=""><figcaption></figcaption></figure></div>
+<div align="left"><figure><img src="/broken/files/9GciXK0d1uBstWhTtovX" alt=""><figcaption></figcaption></figure></div>
