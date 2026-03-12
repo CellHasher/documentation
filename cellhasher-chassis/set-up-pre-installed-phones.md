@@ -47,6 +47,10 @@ If your Cellhasher is on and a phone hasn't powered on, shipment can result in d
 
 Plug in the power cord. The unit will begin sending current to the components. In most cases, you must then press and hold the ⏻ power button for several seconds to power on the phones. The Cellhasher can take up to 1 minute thereafter.
 
+{% hint style="info" %}
+After booting, you may need to toggle between OTG and USB modes if it doesn't boot in your desired mode. Toggle by double click the ⏻ power button. See more in [connection-modes-wi-fi-and-ethernet.md](../additional-docs/connection-modes-wi-fi-and-ethernet.md "mention")
+{% endhint %}
+
 {% hint style="success" %}
 That's it! Proceed to downloading Cellhasher Control in [set-up-download.md](../cellhasher-control/set-up-download.md "mention")
 {% endhint %}
