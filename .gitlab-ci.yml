@@ -1,0 +1,39 @@
+image: node:20
+
+stages:
+  - test
+  - build
+  - deploy
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+
+lint:
+  stage: test
+  script:
+    - npm ci
+    - npm run lint
+
+links:
+  stage: test
+  script:
+    - npm ci
+    - npm run links
+
+pages:
+  stage: deploy
+  needs:
+    - lint
+    - links
+  script:
+    - npm ci
+    - npm run build
+    - cp -r .gitbook _book/.gitbook 2>/dev/null || true
+    - mv _book public
+  artifacts:
+    paths:
+      - public
+  only:
+    - main

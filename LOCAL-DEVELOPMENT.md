@@ -4,13 +4,13 @@ hidden: true
 
 # Local Development Guide
 
-Internal reference for contributors. This page is hidden from the published documentation.
+Internal reference for contributors.
 
 ---
 
 ## Overview
 
-This GitBook is synced with the [`CellHasher/documentation`](https://github.com/CellHasher/documentation) GitHub repository. Changes pushed to `main` are automatically published to the live GitBook site. Changes on other branches can be previewed in the GitBook web editor.
+This documentation is built with [HonKit](https://github.com/honkit/honkit) and synced with the [`CellHasher/documentation`](https://github.com/CellHasher/documentation) GitHub repository. Changes pushed to `main` are automatically built and deployed to GitHub Pages via the CI pipeline in `.github/workflows/docs.yml`.
 
 ---
 
@@ -18,15 +18,21 @@ This GitBook is synced with the [`CellHasher/documentation`](https://github.com/
 
 You do not need any special tooling to edit content — all pages are standard Markdown files.
 
-**Recommended editor:** [VS Code](https://code.visualstudio.com/) with the [GitBook Markdown](https://marketplace.visualstudio.com/items?itemName=gitbook.gitbook-markdown) or general Markdown Preview extension.
+**Recommended editor:** [VS Code](https://code.visualstudio.com/) with a Markdown Preview extension.
 
-> Note: GitBook-specific directives (e.g. `{% hint %}`, `{% columns %}`, `{% tabs %}`) will not render in standard Markdown previewers. They render correctly only on the GitBook platform.
+> **Note:** This repo previously used GitBook. GitBook-specific directives (e.g. `{% hint %}`, `{% columns %}`, `{% tabs %}`) have been converted to standard Markdown for HonKit compatibility.
 
 ### Clone the repo
 
 ```bash
 git clone git@github.com:CellHasher/documentation.git
 cd documentation
+```
+
+### Install dependencies
+
+```bash
+npm install
 ```
 
 ### Workflow
@@ -36,23 +42,34 @@ cd documentation
    git checkout -b your-name/description
    ```
 2. Edit any `.md` files in your editor.
-3. Commit and push your branch:
+3. Preview your changes locally:
+   ```bash
+   npm run serve
+   ```
+   Open `http://localhost:4000` in your browser.
+4. Run tests before committing:
+   ```bash
+   npm test
+   ```
+5. Commit and push your branch:
    ```bash
    git add .
    git commit -m "Your change description"
    git push origin your-name/description
    ```
-4. Open a PR into `main`. GitBook will publish automatically when merged.
+6. Open a PR into `main`. The CI pipeline will build and deploy automatically on merge.
 
 ---
 
-## Previewing in GitBook
+## Available Scripts
 
-GitBook supports branch-based previews via the web editor.
-
-1. Go to [gitbook.com](https://app.gitbook.com) and open the **CellHasher** space.
-2. In the editor, use the branch selector (top-left) to switch to your branch.
-3. GitBook will render a live preview of your changes, including all directives.
+| Command | Description |
+|---|---|
+| `npm run build` | Build static HTML into `_book/` |
+| `npm run serve` | Serve docs locally with live reload at `http://localhost:4000` |
+| `npm run lint` | Run Markdown linter |
+| `npm run links` | Check all internal and external links |
+| `npm test` | Run lint + link checks |
 
 ---
 
@@ -62,8 +79,15 @@ GitBook supports branch-based previews via the web editor.
 documentation/
 ├── README.md                      # Welcome / home page
 ├── SUMMARY.md                     # Table of contents — controls sidebar nav
+├── book.json                      # HonKit configuration
+├── package.json                   # Node.js dependencies and scripts
 ├── releases.json                  # Download links for the latest release
-├── LOCAL-DEVELOPMENT.md           # This file (hidden)
+├── LOCAL-DEVELOPMENT.md           # This file
+├── .gitignore
+├── .markdownlint.json             # Markdown lint rules
+├── .mlc.json                      # Link checker config
+├── .github/workflows/docs.yml     # GitHub Pages CI pipeline
+├── .gitlab-ci.yml                 # GitLab Pages CI pipeline
 ├── .gitbook/assets/               # Images and media
 ├── cellhasher-chassis/            # Hardware setup guides
 ├── cellhasher-control/            # Software download and usage guides
@@ -110,10 +134,6 @@ Steps:
 
 GA4 is configured in `cellhasher-control/set-up-download.md`. Replace the two instances of `G-XXXXXXXXXX` with your actual GA4 Measurement ID.
 
-For sitewide pageview tracking (not just the download page), enable the Google Analytics integration in the GitBook space settings:
-
-**GitBook Space → Settings → Integrations → Google Analytics → enter your Measurement ID**
-
 Download click events are tracked via `gtag('event', 'download', {...})` with the following custom parameters:
 
 | Parameter | Description |
@@ -131,9 +151,4 @@ To view download events in GA4: **Reports → Engage → Events → `download`**
 
 1. Create a new `.md` file in the appropriate folder.
 2. Add it to `SUMMARY.md` in the correct position — this controls where it appears in the sidebar.
-3. To hide a page from the sidebar (keep it accessible by URL only), add this frontmatter:
-   ```yaml
-   ---
-   hidden: true
-   ---
-   ```
+3. To hide a page from the sidebar, simply omit it from `SUMMARY.md`.
