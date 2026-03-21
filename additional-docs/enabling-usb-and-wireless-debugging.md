@@ -9,9 +9,7 @@ description: >-
 
 ***
 
-{% hint style="success" %}
-Cellhasher purchases with phones pre-installed include ADB Authoization Keys, removing the need for this process. Proceed to [settings.md](../cellhasher-control/tabs-walkthrough/settings.md "mention") to import Cellhasher-provided ADB keys, or your own.
-{% endhint %}
+> ✅ Cellhasher purchases with phones pre-installed include ADB Authoization Keys, removing the need for this process. Proceed to [settings.md](../cellhasher-control/tabs-walkthrough/settings.md) to import Cellhasher-provided ADB keys, or your own.
 
 ### 1. Enable Developer Options
 
@@ -33,9 +31,7 @@ For a visual walkthrough, here are guides for popular devices:
 3. Locate Build Number, typically scroll down near the bottom. Tap the Build Number seven times in a row quickly until you see _“You are now a developer”_.
 4. Return to the Settings homepage and near the bottom locate Developer Options. It may be located within System. Open Developer Options and proceed below.
 
-{% hint style="info" %}
-The exact steps may vary slightly depending on your Android version or phone brand. If you can’t find “Build Number,” search for it in the Settings search bar.
-{% endhint %}
+> **ℹ️ Note:** The exact steps may vary slightly depending on your Android version or phone brand. If you can’t find “Build Number,” search for it in the Settings search bar.
 
 ***
 
@@ -57,15 +53,13 @@ In Developer Options, locate each of the settings below and toggle accordingly.
 **Circumstantial:**
 
 7. Turn on Wireless Debugging to allow for control of your device over your network. You will need this setting on if you plan to use Ethernet with your Cellhasher.
-8. Turn off Verify Apps over USB if you need a specific app to install that is not installing or are having trouble connecting to a network using [network.md](../cellhasher-control/tabs-walkthrough/network.md "mention") tab, otherwise leave off on for safety
+8. Turn off Verify Apps over USB if you need a specific app to install that is not installing or are having trouble connecting to a network using [network.md](../cellhasher-control/tabs-walkthrough/network.md) tab, otherwise leave off on for safety
 
 ***
 
 ## 3. Authorize Connection
 
-{% hint style="info" %}
-If you intend to use a Windows/Linux PC with Cellhasher Control, you may need to have Cellhasher Control open during this step to trigger the authorization prompt. Therefore, it's recommended to complete [set-up-download.md](../cellhasher-control/set-up-download.md "mention") and set the correct paths in [settings.md](../cellhasher-control/tabs-walkthrough/settings.md "mention") if you do not encounter a prompt.
-{% endhint %}
+> **ℹ️ Note:** If you intend to use a Windows/Linux PC with Cellhasher Control, you may need to have Cellhasher Control open during this step to trigger the authorization prompt. Therefore, it's recommended to complete [set-up-download.md](../cellhasher-control/set-up-download.md) and set the correct paths in [settings.md](../cellhasher-control/tabs-walkthrough/settings.md) if you do not encounter a prompt.
 
 1. Connect your device to your PC using either with a cable or by plugging it into the Cellhasher (with the Cellhasher connected to the computer).
 2. When prompted, select "Always allow USB Debugging for your computer" then click "OK".

@@ -46,15 +46,13 @@ During an active mirroring session, each device is mirrored in real time, you ca
 
 Detach mirrors into a new window using **Detach** for split screen or multi-monitors.
 
-{% hint style="info" %}
-#### Upcoming Enhancements
-
-Features are actively evolving. Future updates plan to include:
-
-* Group Control Gestures — Control multiple devices with a single user-initiated touch or swipe.
-* Automated App Launch — Start identical apps across all mirrors at once.
-* Optimized GPU Rendering — Seamless support that consume less GPU resources.
-{% endhint %}
+> **ℹ️ Upcoming Enhancements**
+>
+> Features are actively evolving. Future updates plan to include:
+>
+> * Group Control Gestures — Control multiple devices with a single user-initiated touch or swipe.
+> * Automated App Launch — Start identical apps across all mirrors at once.
+> * Optimized GPU Rendering — Seamless support that consume less GPU resources.
 
 ***
 
@@ -91,7 +89,7 @@ Each active mirror consumes CPU and GPU power. If you experience lag:
 
 > **Black screen /** **No feed**
 >
-> * Check your Scrcpy path in Settings → System Paths to see if it's correct. See more in [settings.md](settings.md "mention").
+> * Check your Scrcpy path in Settings → System Paths to see if it's correct. See more in [settings.md](settings.md).
 >
 > **Lag or slow responses**
 >

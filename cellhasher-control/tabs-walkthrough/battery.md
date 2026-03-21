@@ -26,13 +26,11 @@ By spoofing the level values you:
 * Maintain maximum performance
 * Avoid operating system safety features that would otherwise interrupt automations
 
-{% hint style="success" %}
-#### Recommended Levels
-
-* Battery Level: `100%`
-* Battery Temperature: `~25°C`
-* AC Charging: Enabled (if chassis supplies power)
-{% endhint %}
+> ✅ **Recommended Levels**
+>
+> * Battery Level: `100%`
+> * Battery Temperature: `~25°C`
+> * AC Charging: Enabled (if chassis supplies power)
 
 ***
 

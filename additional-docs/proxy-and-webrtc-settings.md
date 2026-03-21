@@ -1,7 +1,3 @@
----
-hidden: true
----
-
 # Proxy and WebRTC Settings
 
 ### Recommended: 🔒 Proxy and WebRTC Settings
@@ -44,9 +40,7 @@ Visit the official Cellhasher GitHub to download the latest version.
 
 [Cellhasher GitHub](https://github.com/CellHasher/Beta-Cellhasher/releases)
 
-{% hint style="info" %}
-Software updates are not automatic currently. Check Discord and GitHub occasionally for the latest release.
-{% endhint %}
+> **ℹ️ Note:** Software updates are not automatic currently. Check Discord and GitHub occasionally for the latest release.
 
 
 
@@ -113,9 +107,7 @@ Cut the BMS cable, expose the trace, and carefully solder the wires directly. Wr
 
 ## Step 3: Disassemble the Phones
 
-{% hint style="danger" %}
-Lithium-ion batteries can explode if punctured. Be very careful and perform your due diligence before proceeding.
-{% endhint %}
+> **🚨 Danger:** Lithium-ion batteries can explode if punctured. Be very careful and perform your due diligence before proceeding.
 
 1. **Remove the battery and other optional components**
 
@@ -133,9 +125,7 @@ Lithium-ion batteries can explode if punctured. Be very careful and perform your
 
 ## Step 4: Adjust Your Cellhasher's Voltage
 
-{% hint style="info" %}
-Cellhasher outputs the same voltage to all 20 phone ports.
-{% endhint %}
+> **ℹ️ Note:** Cellhasher outputs the same voltage to all 20 phone ports.
 
 1. **Set the input voltage**
 
@@ -163,26 +153,24 @@ Cellhasher outputs the same voltage to all 20 phone ports.
 
 * **Use one of the following methods for your BMS cables:**
 
-{% tabs %}
-{% tab title="Method 1:" %}
+### Method 1:
+
 **Using Cellhasher Provided BMS Cables**
 
 Cellhasher units come with BMS cables that attach to certain phones without additional DIY. The provided cables work with Samsung S10, S9, S8, S7, S6, Note9, Note8, and Note5 series.
-{% endtab %}
 
-{% tab title="Method 2:" %}
+### Method 2:
+
 **Custom Soldering Full Circuit**
 
 Use the entire battery circuit when creating the cable, soldering the positive and negative wires correctly. Wrap with electrical tape or heat shrink.
 
-
-
 <div><figure><img src="../.gitbook/assets/bms 3.avif" alt=""><figcaption><p>Method 2</p></figcaption></figure> <figure><img src="../.gitbook/assets/bms 2.png" alt=""><figcaption><p>Method 2</p></figcaption></figure></div>
 
 <div><figure><img src="../.gitbook/assets/battery 1.png" alt=""><figcaption><p>Removing ribbon for method 2 &#x26; 3</p></figcaption></figure> <figure><img src="../.gitbook/assets/battery 2.avif" alt=""><figcaption><p>Removing ribbon for method 2 &#x26; 3</p></figcaption></figure> <figure><img src="../.gitbook/assets/battery3.png" alt=""><figcaption><p>Removing ribbon for method 2 &#x26; 3</p></figcaption></figure></div>
-{% endtab %}
 
-{% tab title="Method 3:" %}
+### Method 3:
+
 **Custom Soldering Without Circuit**
 
 Cut the BMS cable, expose the trace, and carefully solder the wires directly. Wrap the cable securely to avoid shorts.
@@ -190,8 +178,6 @@ Cut the BMS cable, expose the trace, and carefully solder the wires directly. Wr
 <figure><img src="../.gitbook/assets/bms 1.png" alt=""><figcaption><p>Method 3</p></figcaption></figure>
 
 <div><figure><img src="../.gitbook/assets/battery 1.png" alt=""><figcaption><p>Removing ribbon for method 2 &#x26; 3</p></figcaption></figure> <figure><img src="../.gitbook/assets/battery 2.avif" alt=""><figcaption><p>Removing ribbon for method 2 &#x26; 3</p></figcaption></figure> <figure><img src="../.gitbook/assets/battery3.png" alt=""><figcaption><p>Removing ribbon for method 2 &#x26; 3</p></figcaption></figure></div>
-{% endtab %}
-{% endtabs %}
 
 * **Test and Troubleshoot**
   * Ensure the device powers on after connecting the BMS cable. If issues arise, check solder connections, voltage settings, and wire orientation.
@@ -210,10 +196,8 @@ Cut the BMS cable, expose the trace, and carefully solder the wires directly. Wr
 
 <div align="left"><figure><img src="../.gitbook/assets/Cellhasher install.jpeg" alt="" width="375"><figcaption></figcaption></figure></div>
 
-{% hint style="success" %}
-## Done!
-
-Share your set up with the links below and head to [set-up-download.md](../cellhasher-control/set-up-download.md "mention") to start controlling your phones!&#x20;
-
-<a href="https://x.com/CellHasher" class="button secondary">Follow Cellhasher on X</a> <a href="https://discord.com/invite/9bGE6e4X2c" class="button secondary">Join us on Discord</a>
-{% endhint %}
+> ## ✅ Done!
+>
+> Share your set up with the links below and head to [set-up-download.md](../cellhasher-control/set-up-download.md) to start controlling your phones!&#x20;
+>
+> <a href="https://x.com/CellHasher" class="button secondary">Follow Cellhasher on X</a> <a href="https://discord.com/invite/9bGE6e4X2c" class="button secondary">Join us on Discord</a>

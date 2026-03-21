@@ -23,9 +23,7 @@ If you don’t already have these installed or don’t know where to find them:
 2. For the applicable downloads, extract the  `.zip` file.
 3. Set the path of the `.exe` for each line.
 
-{% hint style="info" %}
-Redownload the latest versions occasionally for best performance and compatibility
-{% endhint %}
+> **ℹ️ Note:** Redownload the latest versions occasionally for best performance and compatibility
 
 | Tool                            | Description                                         | Example Path                                                             |
 | ------------------------------- | --------------------------------------------------- | ------------------------------------------------------------------------ |
@@ -53,15 +51,13 @@ You’ll be able to add your OpenAI, Mistral, or other API keys in this section 
 
 This is where you manage the key files that allow ADB to control your phones. Each phone has a key, stored in both `adbkey` and `adbkey.pub` files. If you have ADB Keys from another computer or source, you can import them here.&#x20;
 
-{% hint style="success" %}
-Cellhasher purcahses with phones pre-installed come with ADB Authoization Keys. Import the key files here.
-{% endhint %}
+> ✅ Cellhasher purcahses with phones pre-installed come with ADB Authoization Keys. Import the key files here.
 
 <figure><img src="/broken/files/tbbTB8MGslCuw1qkUnBp" alt=""><figcaption></figcaption></figure>
 
 <div align="left"><figure><img src="../../.gitbook/assets/Screenshot 2025-10-24 163944.png" alt="" width="274"><figcaption></figcaption></figure></div>
 
-Check [enabling-usb-and-wireless-debugging.md](../../additional-docs/enabling-usb-and-wireless-debugging.md "mention") for more information. Your device may already be included in the current key set if you do not see an authorization prompt.
+Check [enabling-usb-and-wireless-debugging.md](../../additional-docs/enabling-usb-and-wireless-debugging.md) for more information. Your device may already be included in the current key set if you do not see an authorization prompt.
 
 ### Reset ADB
 

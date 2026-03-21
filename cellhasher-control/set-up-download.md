@@ -9,24 +9,20 @@ description: >-
 
 ***
 
-{% hint style="info" %}
-#### Minimum System Requirements
-
-**Computer**
-
-* Operating System: macOS, Windows 10 (64-bit), Linux
-* GPU: For screen mirroring 20 or more phones, a moderate performance graphics card is recommended. Some integrated graphics (APUs) have proven sufficient for light workloads.
-
-**Phone**
-
-* Operating System: Android 9 or higher
-{% endhint %}
+> **ℹ️ Minimum System Requirements**
+>
+> **Computer**
+>
+> * Operating System: macOS, Windows 10 (64-bit), Linux
+> * GPU: For screen mirroring 20 or more phones, a moderate performance graphics card is recommended. Some integrated graphics (APUs) have proven sufficient for light workloads.
+>
+> **Phone**
+>
+> * Operating System: Android 9 or higher
 
 ## Installing Cellhasher Control
 
-{% hint style="info" %}
-You may receive a warning prompt when opening the application. This is due to Cellhasher Control being in beta release and will be resolved at full release.
-{% endhint %}
+> **ℹ️ Note:** You may receive a warning prompt when opening the application. This is due to Cellhasher Control being in beta release and will be resolved at full release.
 
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
@@ -110,8 +106,8 @@ You may receive a warning prompt when opening the application. This is due to Ce
 
 #### 1. Configure Settings
 
-Head to [settings.md](tabs-walkthrough/settings.md "mention") to set paths to use certain features and import ADB Authorization Key files.
+Head to [settings.md](tabs-walkthrough/settings.md) to set paths to use certain features and import ADB Authorization Key files.
 
 #### 2. Allow USB Debugging on your devices
 
-Allow USB Debugging on your devices if you haven't already. Go to [enabling-usb-and-wireless-debugging.md](../additional-docs/enabling-usb-and-wireless-debugging.md "mention") so that your phones can connect to your computer.
+Allow USB Debugging on your devices if you haven't already. Go to [enabling-usb-and-wireless-debugging.md](../additional-docs/enabling-usb-and-wireless-debugging.md) so that your phones can connect to your computer.

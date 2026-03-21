@@ -63,21 +63,9 @@ This flow:
 
 This pre-made automation is designed for HMD Vibes, the same model included in _Cellhasher Classic + 20 Phones_ . Because other Android screens may vary slightly in resolution or layout, users may need to tweak tap coordinates for other phone models.
 
-{% file src="../../.gitbook/assets/Install-Provision-AcurastLite(HMD-Vibe).json" %}
+<a href="../../.gitbook/assets/Install-Provision-AcurastLite(HMD-Vibe).json">Download: Install-Provision-AcurastLite(HMD-Vibe).json</a>
 
-{% columns %}
-{% column %}
-<figure><img src="../../.gitbook/assets/Screenshot 2025-10-24 173242.png" alt=""><figcaption></figcaption></figure>
-{% endcolumn %}
-
-{% column %}
-<figure><img src="../../.gitbook/assets/Screenshot 2025-10-24 173334.png" alt=""><figcaption></figcaption></figure>
-{% endcolumn %}
-
-{% column %}
-<figure><img src="../../.gitbook/assets/Screenshot 2025-10-24 173354.png" alt=""><figcaption></figcaption></figure>
-{% endcolumn %}
-{% endcolumns %}
+<div><figure><img src="../../.gitbook/assets/Screenshot 2025-10-24 173242.png" alt=""><figcaption></figcaption></figure> <figure><img src="../../.gitbook/assets/Screenshot 2025-10-24 173334.png" alt=""><figcaption></figcaption></figure> <figure><img src="../../.gitbook/assets/Screenshot 2025-10-24 173354.png" alt=""><figcaption></figcaption></figure></div>
 
 ***
 
