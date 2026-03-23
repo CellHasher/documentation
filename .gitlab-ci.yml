@@ -12,6 +12,10 @@ cache:
 
 lint:
   stage: test
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main" || $CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: on_success
+    - when: never
   script:
     - npm ci
     - npm run test
@@ -26,6 +30,10 @@ lint:
 
 links:
   stage: test
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main" || $CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: on_success
+    - when: never
   script:
     - npm ci
     - npm run links
@@ -49,7 +57,7 @@ pages:
     paths:
       - public
   rules:
-    - if: '$DEPLOY_MANUAL == "true"'
+    - if: '$DEPLOY_MANUAL == "true" && $CI_COMMIT_BRANCH == "main"'
       when: manual
     - if: '$CI_COMMIT_BRANCH == "main" && $CI_PIPELINE_SOURCE != "merge_request_event"'
       when: on_success
