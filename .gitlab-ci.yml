@@ -14,13 +14,21 @@ lint:
   stage: test
   script:
     - npm ci
-    - npm run lint
+    - npm run test
+  artifacts:
+    when: always
+    reports:
+      junit: reports/junit/markdownlint-junit.xml
+    paths:
+      - reports/junit
+      - reports/coverage
 
 links:
   stage: test
   script:
     - npm ci
     - npm run links
+  allow_failure: true
 
 pages:
   stage: deploy

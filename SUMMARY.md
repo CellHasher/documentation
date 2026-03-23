@@ -43,6 +43,4 @@
 * [Install Android ADB, Fastboot, and USB (Drivers Install)](additional-docs/install-android-adb-fastboot-and-usb-drivers-install.md)
 * [Proxy and WebRTC Settings](additional-docs/proxy-and-webrtc-settings.md)
 
-## Internal
 
-* [Local Development Guide](LOCAL-DEVELOPMENT.md)

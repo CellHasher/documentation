@@ -6,6 +6,13 @@
     "readme": "README.md",
     "summary": "SUMMARY.md"
   },
-  "plugins": ["-sharing", "-fontsettings", "-livereload"],
-  "pluginsConfig": {}
+  "ignore": [
+    "node_modules",
+    "_book",
+    "LOCAL-DEVELOPMENT.md"
+  ],
+  "plugins": ["chollapse", "-sharing", "-fontsettings", "-livereload"],
+  "pluginsConfig": {
+    "chollapse": {}
+  }
 }

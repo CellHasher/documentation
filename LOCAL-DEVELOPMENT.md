@@ -20,7 +20,7 @@ You do not need any special tooling to edit content — all pages are standard M
 
 **Recommended editor:** [VS Code](https://code.visualstudio.com/) with a Markdown Preview extension.
 
-> **Note:** This repo previously used GitBook. GitBook-specific directives (e.g. `{% hint %}`, `{% columns %}`, `{% tabs %}`) have been converted to standard Markdown for HonKit compatibility.
+> **Note:** This repo previously used GitBook. GitBook-specific directives (e.g. {% raw %}{% hint %}{% endraw %}, {% raw %}{% columns %}{% endraw %}, {% raw %}{% tabs %}{% endraw %}) have been converted to standard Markdown for HonKit compatibility.
 
 ### Clone the repo
 

@@ -1,0 +1,7 @@
+{
+  "globs": ["**/*.md", "!node_modules/**", "!_book/**"],
+  "outputFormatters": [
+    ["markdownlint-cli2-formatter-junit", { "name": "reports/junit/markdownlint-junit.xml" }],
+    ["markdownlint-cli2-formatter-json", { "name": "reports/coverage/markdownlint.json" }]
+  ]
+}

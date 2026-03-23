@@ -2,3 +2,6 @@ tmpclaude-*
 node_modules/
 _book/
 public/
+.claude/settings.local.json
+reports
+markdownlint-cli2-results.json
