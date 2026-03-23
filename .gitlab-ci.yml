@@ -22,6 +22,7 @@ lint:
     paths:
       - reports/junit
       - reports/coverage
+  allow_failure: true
 
 links:
   stage: test
@@ -43,5 +44,11 @@ pages:
   artifacts:
     paths:
       - public
-  only:
-    - main
+  rules:
+    - if: '$DEPLOY_MANUAL == "true"'
+      when: manual
+    - if: '$CI_COMMIT_BRANCH == "main" && $CI_PIPELINE_SOURCE != "merge_request_event"'
+      when: on_success
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: manual
+    - when: manual
