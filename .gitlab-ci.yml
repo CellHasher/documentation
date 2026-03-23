@@ -34,8 +34,12 @@ links:
 pages:
   stage: deploy
   needs:
-    - lint
-    - links
+    - job: lint
+      optional: true
+    - job: links
+      optional: true
+    - job: test
+      optional: true
   script:
     - npm ci
     - npm run build
