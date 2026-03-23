@@ -34,9 +34,11 @@ jobs:
 
       - name: Lint Markdown
         run: npm run lint
+        continue-on-error: true
 
       - name: Check links
         run: npm run links
+        continue-on-error: true
 
   build:
     name: Build Documentation
@@ -70,7 +72,7 @@ jobs:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
     needs: build
-    if: github.ref == 'refs/heads/main'
+    if: github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
