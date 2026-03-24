@@ -8,11 +8,7 @@ description: >-
 
 ***
 
-
-
-{% stepper %}
-{% step %}
-## Gather Equipment
+## Step 1: Gather Equipment
 
 #### 1. Aquire Android smartphone(s)
 
@@ -26,23 +22,13 @@ Most activities related to Cellhasher require Androids. This guide is not design
 
 <div><figure><img src="../.gitbook/assets/Addon3.png" alt=""><figcaption></figcaption></figure> <figure><img src="../.gitbook/assets/Addon1.png" alt=""><figcaption></figcaption></figure> <figure><img src="../.gitbook/assets/Addon2.png" alt=""><figcaption></figcaption></figure></div>
 
+## Step 2: Prepare Phones
 
-{% endstep %}
+Head to [enabling-usb-and-wireless-debugging.md](../additional-docs/enabling-usb-and-wireless-debugging.md) and complete this process for your phones.
 
-{% step %}
-## Prepare Phones
+## Step 3: Disassemble Phones
 
-Head to [enabling-usb-and-wireless-debugging.md](../additional-docs/enabling-usb-and-wireless-debugging.md "mention") and complete this process for your phones.
-
-
-{% endstep %}
-
-{% step %}
-## Disassemble Phones
-
-{% hint style="danger" %}
-Lithium-ion batteries can combust if punctured. Be very careful and perform your due diligence before proceeding.
-{% endhint %}
+> **🚨 Danger:** Lithium-ion batteries can combust if punctured. Be very careful and perform your due diligence before proceeding.
 
 #### 1. Remove the battery and other optional components
 
@@ -58,15 +44,9 @@ Review the label on the battery and record it's Nominal Voltage and Charge Volta
 
 Locate the nearest or most convenient recycler or store properly.
 
+## Step 4: Adjust Cellhasher Voltage
 
-{% endstep %}
-
-{% step %}
-## Adjust Cellhasher Voltage
-
-{% hint style="info" %}
-Cellhasher outputs the same voltage to all 20 phone ports.
-{% endhint %}
+> **ℹ️ Note:** Cellhasher outputs the same voltage to all 20 phone ports.
 
 #### 1. Set the input voltage
 
@@ -92,28 +72,24 @@ Every Cellhasher has an adjustable power supply unit (PSU) that supports either 
      * **Multimeter**: Place your positive and negative pins in on the outputting side of the power supply. This location will read **0.25V** than what the phone will receive. For example, if you read 5.07V here, your phone will receive 4.82V.
      * **Digital meter**: Plug in to any USB port and record. The BMS port receives **0.18V** less than the USB port. For example, if you read 5.0V here, your phone will receive 4.82V.
    * Use stiff, slim screwdriver or other tool to gently spin the potentiometer. It's recommended to start with ½ turns, carefully not over spinning the dial. Use this process to set voltage your phone will recieve to the Charge Voltage. Power off the Cellhasher.
-{% endstep %}
 
-{% step %}
-## Battery Management System (BMS) Cables
+## Step 5: Battery Management System (BMS) Cables
 
 Use one of the following methods for your BMS cables.
 
-{% tabs %}
-{% tab title="Method 1:" %}
+### Method 1: Use Cellhasher Provided BMS Cables
+
 **Use Cellhasher Provided BMS Cables**
 
 Cellhasher units come with BMS cables that attach to certain phones without additional DIY. The provided cables work with Samsung S10, S9, S8, S7, S6, Note9, Note8, and Note5 series
-{% endtab %}
 
-{% tab title="Method 2:" %}
+### Method 2: Custom Soldering Full Circuit
+
 **Custom Soldering Full Circuit**
 
 Use the entire battery circuit piece by cutting the two tabs from the battery.&#x20;
 
-{% hint style="danger" %}
-Cut only one tab at a time. Approach it from the nearest side for each cut. Making contact with both tabs at the same time with a metal scissors will cause sparks.
-{% endhint %}
+> **🚨 Danger:** Cut only one tab at a time. Approach it from the nearest side for each cut. Making contact with both tabs at the same time with a metal scissors will cause sparks.
 
 Find the + and - next to each tab on the circuit.
 
@@ -125,10 +101,10 @@ Wrap with electrical tape or heat shrink.
 
 <div><figure><img src="../.gitbook/assets/bms 3.avif" alt=""><figcaption><p>Method 2</p></figcaption></figure> <figure><img src="../.gitbook/assets/bms 2.png" alt=""><figcaption><p>Method 2</p></figcaption></figure></div>
 
-<div><figure><img src="../.gitbook/assets/battery 1.png" alt=""><figcaption><p>Removing ribbon for method 2 &#x26; 3</p></figcaption></figure> <figure><img src="../.gitbook/assets/battery 2.avif" alt=""><figcaption><p>Removing ribbon for method 2 &#x26; 3</p></figcaption></figure> <figure><img src="../.gitbook/assets/battery3.png" alt=""><figcaption><p>Removing ribbon for method 2 &#x26; 3</p></figcaption></figure></div>
-{% endtab %}
+<div><figure><img src="../.gitbook/assets/battery 1.png" alt=""><figcaption><p>Removing ribbon for method 2 &amp; 3</p></figcaption></figure> <figure><img src="../.gitbook/assets/battery 2.avif" alt=""><figcaption><p>Removing ribbon for method 2 &amp; 3</p></figcaption></figure> <figure><img src="../.gitbook/assets/battery3.png" alt=""><figcaption><p>Removing ribbon for method 2 &amp; 3</p></figcaption></figure></div>
 
-{% tab title="Method 3:" %}
+### Method 3: Custom Soldering Without Circuit
+
 **Custom Soldering Without Circuit**
 
 First see if you can determine the positive and negative sides along the ribbon. If you can, you may proceed by cutting the battery circuit as in the image below and gently scratching to expose the trace.&#x20;
@@ -141,38 +117,26 @@ Prevents shorts by wrap with electrical tape or heat shrink.
 
 <figure><img src="../.gitbook/assets/bms 1.png" alt=""><figcaption><p>Method 3</p></figcaption></figure>
 
-<div><figure><img src="../.gitbook/assets/battery 1.png" alt=""><figcaption><p>Removing ribbon for method 2 &#x26; 3</p></figcaption></figure> <figure><img src="../.gitbook/assets/battery 2.avif" alt=""><figcaption><p>Removing ribbon for method 2 &#x26; 3</p></figcaption></figure> <figure><img src="../.gitbook/assets/battery3.png" alt=""><figcaption><p>Removing ribbon for method 2 &#x26; 3</p></figcaption></figure></div>
-{% endtab %}
-{% endtabs %}
+<div><figure><img src="../.gitbook/assets/battery 1.png" alt=""><figcaption><p>Removing ribbon for method 2 &amp; 3</p></figcaption></figure> <figure><img src="../.gitbook/assets/battery 2.avif" alt=""><figcaption><p>Removing ribbon for method 2 &amp; 3</p></figcaption></figure> <figure><img src="../.gitbook/assets/battery3.png" alt=""><figcaption><p>Removing ribbon for method 2 &amp; 3</p></figcaption></figure></div>
 
 #### Test and Troubleshoot
 
 Ensure the device powers on after connecting the BMS cable. If issues arise, recheck solder connections, voltage settings, and wire orientation.
 
-
-{% endstep %}
-
-{% step %}
-## Tape and Replace Back Plate
+## Step 6: Tape and Replace Back Plate
 
 Use a snipping tool to cut majority of the backplate off. Leave enough to secure the battery connection point using a few screws. Gently fold, flatten, and tape the BMS cable to secure it.
 
 <div align="left"><figure><img src="../.gitbook/assets/IMG_7928.JPEG" alt="" width="375"><figcaption></figcaption></figure></div>
-{% endstep %}
 
-{% step %}
-## Insert Phones
+## Step 7: Insert Phones
 
 Using the USB stubs provided, connect the phones and their BMS cable into each slot on the motherboard. Once complete, power on.
 
 <div align="left"><figure><img src="../.gitbook/assets/Cellhasher install.jpeg" alt="" width="375"><figcaption></figcaption></figure></div>
-{% endstep %}
-{% endstepper %}
 
-{% hint style="success" %}
-## Done!
-
-Share your set up with the links below and head to [set-up-download.md](../cellhasher-control/set-up-download.md "mention") to start controlling your phones!&#x20;
-
-<a href="https://x.com/CellHasher" class="button secondary">Follow Cellhasher on X</a> <a href="https://discord.com/invite/9bGE6e4X2c" class="button secondary">Join us on Discord</a>
-{% endhint %}
+> ✅ **Done!**
+>
+> Share your set up with the links below and head to [set-up-download.md](../cellhasher-control/set-up-download.md) to start controlling your phones!&#x20;
+>
+> <a href="https://x.com/CellHasher">Follow Cellhasher on X</a> | <a href="https://discord.com/invite/9bGE6e4X2c">Join us on Discord</a>

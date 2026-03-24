@@ -13,11 +13,11 @@ description: >-
 
 The Package Manager is made of 3 tabs:
 
-[#installed](package-manager.md#installed "mention") → Browse all files/apps on a device
+[Installed](#installed) → Browse all files/apps on a device
 
-[#package-lists](package-manager.md#package-lists "mention")→ Build a list of multiple packages to remove at once
+[Package Lists](#package-lists) → Build a list of multiple packages to remove at once
 
-[#bulk-actions](package-manager.md#bulk-actions "mention") → Uninstall packages from a list, or install a package from an APK.
+[Bulk Actions](#bulk-actions) → Uninstall packages from a list, or install a package from an APK.
 
 ***
 
@@ -27,13 +27,9 @@ Here you can browse and find all files and apps on a selected device. Use the fi
 
 You'll likely want to remove bloat on your device, so use this tab to first make a list of the packages you'd like to remove.
 
-{% hint style="danger" %}
-Uninstalling system apps is greyed-out for safety as removing the wrong one could permanently brick your device. Advanced users can use the [terminal.md](terminal.md "mention") tab to manually remove system apps at their own risk.
-{% endhint %}
+> **🚨 Danger:** Uninstalling system apps is greyed-out for safety as removing the wrong one could permanently brick your device. Advanced users can use the [terminal.md](terminal.md) tab to manually remove system apps at their own risk.
 
-{% hint style="info" %}
-We hope to soon add file/app icons and names for easier identification.
-{% endhint %}
+> **ℹ️ Note:** We hope to soon add file/app icons and names for easier identification.
 
 <figure><img src="../../.gitbook/assets/Screenshot 2025-10-24 184159.png" alt=""><figcaption></figcaption></figure>
 

@@ -1,0 +1,18 @@
+{
+  "title": "Cellhasher Documentation",
+  "description": "Official documentation for Cellhasher",
+  "language": "en",
+  "structure": {
+    "readme": "README.md",
+    "summary": "SUMMARY.md"
+  },
+  "ignore": [
+    "node_modules",
+    "_book",
+    "LOCAL-DEVELOPMENT.md"
+  ],
+  "plugins": ["chollapse", "-sharing", "-fontsettings", "-livereload"],
+  "pluginsConfig": {
+    "chollapse": {}
+  }
+}

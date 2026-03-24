@@ -17,11 +17,11 @@ description: >-
 
 The Miner Dashbaord is made of 3 tabs:
 
-[#assignments](miner.md#assignments "mention") → Manage bulk device assignments and run miners
+[Assignments](#assignments) → Manage bulk device assignments and run miners
 
-[#flightsheets](miner.md#flightsheets "mention") → Configure pools, wallet addresses, and algorithms
+[Flightsheets](#flightsheets) → Configure pools, wallet addresses, and algorithms
 
-[#miner-types](miner.md#miner-types "mention") → Create or edit miner logic (install, run, stop scripts)
+[Miner Types](#miner-types) → Create or edit miner logic (install, run, stop scripts)
 
 ***
 
@@ -68,9 +68,7 @@ The **Miner Types** tab lets you edit or create miner logic —\
 Each miner has **Install**, **Run**, **Stop**, and **Uninstall** scripts, typically written in Python.\
 (Must setup Miner Types first for any of the flightsheet,running,bulksheets to work)
 
-{% hint style="success" %}
-Our Pre-Made Miner Types Require you to have python path setup in the Settings Page
-{% endhint %}
+> ✅ Our Pre-Made Miner Types Require you to have python path setup in the Settings Page
 
 <figure><img src="../../.gitbook/assets/Screenshot 2025-10-24 175652.png" alt=""><figcaption><p>Use <strong>CH Miners</strong> to quickly import ready-to-use miner templates from CellHasher’s GitHub.</p></figcaption></figure>
 

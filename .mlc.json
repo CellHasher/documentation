@@ -1,0 +1,20 @@
+{
+  "ignorePatterns": [
+    {"pattern": "^/broken/"},
+    {"pattern": "youtube\\.com"},
+    {"pattern": "youtu\\.be"},
+    {"pattern": "discord\\.com"},
+    {"pattern": "x\\.com"},
+    {"pattern": "app\\.gitbook\\.com"},
+    {"pattern": "marketplace\\.visualstudio\\.com"},
+    {"pattern": "nodemcu\\.github\\.io"},
+    {"pattern": "xda-developers\\.com"},
+    {"pattern": "cdn\\.jsdelivr\\.net"},
+    {"pattern": "dl\\.google\\.com"}
+  ],
+  "aliveStatusCodes": [200, 206, 429],
+  "retryOn429": true,
+  "retryCount": 3,
+  "fallbackRetryDelay": "30s",
+  "timeout": "30s"
+}

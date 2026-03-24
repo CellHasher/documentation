@@ -53,7 +53,7 @@ Do not use this feature if your devices are currently connected wirelessly to AD
 
 > “Changing the Wi-Fi network while in wireless mode may disconnect the device.”
 
-If your devices do get disconnected, refer to [connection-modes-wi-fi-and-ethernet.md](../../additional-docs/connection-modes-wi-fi-and-ethernet.md "mention") to reconnect.
+If your devices do get disconnected, refer to [connection-modes-wi-fi-and-ethernet.md](../../additional-docs/connection-modes-wi-fi-and-ethernet.md) to reconnect.
 
 <figure><img src="../../.gitbook/assets/Screenshot 2025-10-24 170337.png" alt=""><figcaption><p>You will see "WIFI" status if any devices are connected to Cellhasher Control over network.</p></figcaption></figure>
 
@@ -61,9 +61,7 @@ If your devices do get disconnected, refer to [connection-modes-wi-fi-and-ethern
 
 ### Troubleshooting - Device Not Connecting
 
-{% hint style="info" %}
-This step is often required on devices running Android 10 or higher.
-{% endhint %}
+> **ℹ️ Note:** This step is often required on devices running Android 10 or higher.
 
 If devices fail to connect to Wi-Fi, Android’s security settings may be blocking installation of the Wi-Fi helper APK. This helper app is required to transmit network credentials securely to Android.
 

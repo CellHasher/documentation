@@ -4,9 +4,7 @@ hidden: true
 
 # Installing
 
-{% hint style="info" %}
-Cellhasher Control is currently in Beta.
-{% endhint %}
+> **ℹ️ Note:** Cellhasher Control is currently in Beta.
 
 ## 1. Download Latest Release&#x20;
 
@@ -18,7 +16,7 @@ Cellhasher Control is currently in Beta.
 
 ## 2. Download Additional Requirements <a href="#scrcpy" id="scrcpy"></a>
 
-1. Open Cellhasher Control and head to  [network.md](tabs-walkthrough/network.md "mention") tab.
+1. Open Cellhasher Control and head to  [network.md](tabs-walkthrough/network.md) tab.
 2. &#x20;Use the quick download buttons the additional requirements necessary to use certain features.
 
 

@@ -8,9 +8,7 @@ description: >-
 
 ***
 
-{% hint style="info" %}
-Page is still being updated.
-{% endhint %}
+> **ℹ️ Note:** Page is still being updated.
 
 ### COM Port Drivers
 
@@ -24,7 +22,9 @@ For On-The-Go (OTG) PCB's and serial bus boards, here is an available source for
 
 Fastboot devices or ADB not working? Potentially driver issue? Try this bat script by either downloading and running, or running the code below to auto install drivers.
 
-{% code expandable="true" %}
+<a href="../.gitbook/assets/adbinstaller.bat.zip">Download: adbinstaller.bat.zip</a>
+
+
 ```
 @echo off
 
@@ -349,6 +349,5 @@ pause > NUL
 adbinstaller.bat
 13 KB
 ```
-{% endcode %}
 
 <br>

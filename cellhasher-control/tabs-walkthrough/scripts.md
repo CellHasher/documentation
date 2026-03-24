@@ -8,23 +8,11 @@ description: >-
 
 ***
 
-{% hint style="info" %}
-Scripts is made of three tabs, navigate to each to learn more:
-{% endhint %}
+> **ℹ️ Note:** Scripts is made of three tabs, navigate to each to learn more:
 
-{% columns %}
-{% column %}
-<a href="scripts.md#creator" class="button primary">Creator</a>
-{% endcolumn %}
-
-{% column %}
-<a href="scripts.md#my-scripts" class="button primary">My Scripts</a>
-{% endcolumn %}
-
-{% column %}
-<a href="scripts.md#cellhasher-scripts" class="button primary">Cellhasher Scritps</a>
-{% endcolumn %}
-{% endcolumns %}
+* [Creator](#creator)
+* [My Scripts](#my-scripts)
+* [Cellhasher Scripts](#cellhasher-scripts)
 
 ***
 
@@ -34,13 +22,13 @@ Here you can build your own scripts using No-Code, Python, or Lua. The built-in 
 
 <figure><img src="../../.gitbook/assets/Screenshot 2025-10-24 185222.png" alt="" width="563"><figcaption><p>Example of a Python-based script editor with execution controls and a live log.</p></figcaption></figure>
 
-<figure><img src="../../.gitbook/assets/Screenshot 2025-10-24 185210.png" alt="" width="563"><figcaption><p>The No-Code editor allows drag-and-drop command creation, like “Wait,” “Tap,” or “Run Shell.”</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2025-10-24 185210.png" alt="" width="563"><figcaption><p>The No-Code editor allows drag-and-drop command creation, like "Wait," "Tap," or "Run Shell."</p></figcaption></figure>
 
 
 
 You can even use AI models to generate scripts — just tell the model:
 
-> “I’m using Cellhasher Control and want to make a Python script that does _\[task]_ via ADB.”
+> "I'm using Cellhasher Control and want to make a Python script that does _\[task]_ via ADB."
 
 <figure><img src="../../.gitbook/assets/Screenshot 2025-10-24 191120.png" alt="" width="563"><figcaption></figcaption></figure>
 

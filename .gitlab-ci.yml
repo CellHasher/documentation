@@ -1,0 +1,66 @@
+image: node:20
+
+stages:
+  - test
+  - build
+  - deploy
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+
+lint:
+  stage: test
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main" || $CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: on_success
+    - when: never
+  script:
+    - npm ci
+    - npm run test
+  artifacts:
+    when: always
+    reports:
+      junit: reports/junit/markdownlint-junit.xml
+    paths:
+      - reports/junit
+      - reports/coverage
+  allow_failure: true
+
+links:
+  stage: test
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main" || $CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: on_success
+    - when: never
+  script:
+    - npm ci
+    - npm run links
+  allow_failure: true
+
+pages:
+  stage: deploy
+  needs:
+    - job: lint
+      optional: true
+    - job: links
+      optional: true
+    - job: test
+      optional: true
+  script:
+    - npm ci
+    - npm run build
+    - cp -r .gitbook _book/.gitbook 2>/dev/null || true
+    - mv _book public
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: '$DEPLOY_MANUAL == "true" && $CI_COMMIT_BRANCH == "main"'
+      when: manual
+    - if: '$CI_COMMIT_BRANCH == "main" && $CI_PIPELINE_SOURCE != "merge_request_event"'
+      when: on_success
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: manual
+    - when: manual

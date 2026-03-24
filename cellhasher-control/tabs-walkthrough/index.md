@@ -41,11 +41,9 @@ Each entry displays:
 * **Description** with tags
 * **Actions** for quick management
 
-{% hint style="info" %}
-Some commands are tagged as Advanced / Risky. These can alter system partitions, erase data, or soft-brick devices if used incorrectly. Always confirm what a command does before executing it.
-
-Commands marked as “Advanced / Risky” should only be used by experienced users or after testing on non-critical devices.
-{% endhint %}
+> **ℹ️ Note:** Some commands are tagged as Advanced / Risky. These can alter system partitions, erase data, or soft-brick devices if used incorrectly. Always confirm what a command does before executing it.
+>
+> Commands marked as “Advanced / Risky” should only be used by experienced users or after testing on non-critical devices.
 
 <figure><img src="../../.gitbook/assets/Screenshot 2025-10-24 193954.png" alt=""><figcaption></figcaption></figure>
 

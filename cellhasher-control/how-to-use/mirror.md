@@ -59,6 +59,4 @@
 * The mirror feature will intiate the selected phones to appear in the grid display. The devices will appear one-at-a-time, and continue to rearrange automatically until all selected devices appear.
 * Use the window header's expand feature to show a single device full-screened.
 
-{% hint style="info" %}
-Known issue: If a device does not appear on the initial mirroring and leaves a gap, select that device's individual mirror button on the side panel.
-{% endhint %}
+> **ℹ️ Note:** Known issue: If a device does not appear on the initial mirroring and leaves a gap, select that device's individual mirror button on the side panel.

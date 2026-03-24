@@ -45,9 +45,7 @@ You can add your own custom commands or sections for quick reuse, or import them
 
 Results appear live in the console, color-coded by device ID for clarity.
 
-{% hint style="warning" %}
-The Terminal is powerful — don’t run commands blindly. Always research unfamiliar ADB or Fastboot commands before execution. Some system-level operations can soft-brick or wipe devices if used incorrectly.
-{% endhint %}
+> **⚠️ Warning:** The Terminal is powerful — don’t run commands blindly. Always research unfamiliar ADB or Fastboot commands before execution. Some system-level operations can soft-brick or wipe devices if used incorrectly.
 
 ***
 
