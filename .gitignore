@@ -5,3 +5,5 @@ public/
 .claude/settings.local.json
 reports
 markdownlint-cli2-results.json
+docs/assets/js/analytics-config.js
+releases.json
