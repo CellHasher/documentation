@@ -35,6 +35,10 @@ cd documentation
 npm install
 ```
 
+> **After pulling changes that touch `package.json`** (e.g. the `honkit-plugin-add-js`
+> dependency was added): always re-run `npm install` to pick up new packages. The CI
+> pipeline uses `npm install` for the same reason.
+
 ### Workflow
 
 1. Create a branch off `main`:
@@ -44,6 +48,10 @@ npm install
 2. Edit any `.md` files in your editor.
 3. Preview your changes locally:
    ```bash
+   # Fast live-reload (no analytics injection — good for content editing)
+   npm run serve:content
+
+   # Full build preview with analytics injected (mirrors the deployed site)
    npm run serve
    ```
    Open `http://localhost:4000` in your browser.
@@ -65,8 +73,9 @@ npm install
 
 | Command | Description |
 |---|---|
-| `npm run build` | Build static HTML into `_book/` |
-| `npm run serve` | Serve docs locally with live reload at `http://localhost:4000` |
+| `npm run build` | Generate `analytics-config.js`, then build static HTML via HonKit (scripts injected by plugin) |
+| `npm run serve` | Full build then serve at `http://localhost:4000` — supports `GTAG` env var |
+| `npm run serve:content` | Generate config then start HonKit live-reload dev server — good for fast content editing |
 | `npm run lint` | Run Markdown linter |
 | `npm run links` | Check all internal and external links |
 | `npm test` | Run lint + link checks |
@@ -79,7 +88,7 @@ npm install
 documentation/
 ├── README.md                      # Welcome / home page
 ├── SUMMARY.md                     # Table of contents — controls sidebar nav
-├── book.json                      # HonKit configuration
+├── book.json                      # HonKit configuration (includes add-js plugin)
 ├── package.json                   # Node.js dependencies and scripts
 ├── releases.json                  # Download links for the latest release
 ├── LOCAL-DEVELOPMENT.md           # This file
@@ -89,9 +98,19 @@ documentation/
 ├── .github/workflows/docs.yml     # GitHub Pages CI pipeline
 ├── .gitlab-ci.yml                 # GitLab Pages CI pipeline
 ├── .gitbook/assets/               # Images and media
+├── scripts/
+│   ├── generate-config.js         # Pre-build: writes analytics-config.js
+│   ├── serve.js                   # Local static file server (npm run serve)
+│   └── inject-analytics.js        # Superseded — kept as reference only
+├── docs/assets/
+│   ├── css/consent.css            # Consent modal + download button styles
+│   └── js/
+│       ├── analytics-config.js    # AUTO-GENERATED (committed as empty placeholder)
+│       ├── consent.js             # GDPR consent modal + GA4 loader
+│       └── os-detect.js          # OS detection + download button wiring
 ├── cellhasher-chassis/            # Hardware setup guides
 ├── cellhasher-control/            # Software download and usage guides
-│   ├── set-up-download.md         # Download page (loads from releases.json)
+│   ├── installing.md              # Download page with OS auto-detection UI
 │   ├── tabs-walkthrough/          # Detailed tab-by-tab walkthrough
 │   └── how-to-use/                # Quick how-to guides
 └── additional-docs/               # Supplementary docs (ADB, debugging, etc.)
@@ -99,51 +118,129 @@ documentation/
 
 ---
 
-## Updating the Download Links (`releases.json`)
+## Download Links (`releases.json`)
 
-When a new release is published, update `releases.json` in the root of the repo. The download page at `cellhasher-control/set-up-download.md` fetches this file at runtime from the `main` branch — no changes to the markdown page are required.
+`releases.json` is a **generated, gitignored build artifact** — do not commit it.
 
-**Format:**
+It is written automatically by `scripts/generate-config.js` (the first step of
+`npm run build`) by fetching:
 
-```json
-{
-  "version": "0.5.6",
-  "downloads": {
-    "mac": {
-      "arm64": "https://github.com/CellHasher/Beta-Cellhasher/releases/download/0.5.6/cellhasher_controller_0.5.6_aarch64.dmg",
-      "intel": "https://github.com/CellHasher/Beta-Cellhasher/releases/download/0.5.6/cellhasher_controller_0.5.6_x86_64.dmg"
-    },
-    "windows": {
-      "x64": "https://github.com/CellHasher/Beta-Cellhasher/releases/download/0.5.6/cellhasher_controller_0.5.6_x86_64.exe"
-    },
-    "linux": {
-      "deb": "https://github.com/CellHasher/Beta-Cellhasher/releases/download/0.5.6/cellhasher_controller_0.5.6_amd64.deb"
-    }
-  }
-}
+```
+GET https://api.github.com/repos/CellHasher/Beta-Cellhasher/releases?per_page=3
+Accept: application/vnd.github+json
 ```
 
-Steps:
-1. Update the `version` field.
-2. Update each download URL to point to the new release assets.
-3. Commit and push to `main`.
+In CI the request is authenticated via `GITHUB_TOKEN` (5 000 req/hr limit). Locally
+it is unauthenticated (60 req/hr). If the fetch fails for any reason, the script falls
+back to the last known `releases.json` if it is present on disk — otherwise
+`window.CELLHASHER_RELEASES` is set to `null` and the browser falls back to showing
+only the GitHub Releases page link.
+
+**No manual update is ever needed** when a new GitHub Release is published. The next
+CI build will pick it up automatically.
+
+### How download links resolve at runtime
+
+`os-detect.js` runs in the browser and independently fetches the same API endpoint
+live on each page load. It scans the response (newest release first, drafts skipped)
+and picks the first asset whose filename matches the visitor's OS:
+
+| OS | Filename pattern |
+|---|---|
+| Windows | `*.exe` |
+| macOS — Apple Silicon | `*aarch64*.dmg` |
+| macOS — Intel | `*.dmg` (excluding `aarch64`) |
+| Linux | `*.deb` |
+
+If the live fetch fails, it falls back to `window.CELLHASHER_RELEASES` (the releases
+array baked in at build time). If that is also unavailable, individual per-platform
+links are hidden and only the "browse all releases on GitHub" link is shown.
+
+> **Local development:** Run `node scripts/generate-config.js` to regenerate
+> `releases.json` and `analytics-config.js` without doing a full build.
 
 ---
 
 ## Google Analytics
 
-GA4 is configured in `cellhasher-control/set-up-download.md`. Replace the two instances of `G-XXXXXXXXXX` with your actual GA4 Measurement ID.
+GA4 is injected at build time via `honkit-plugin-add-js`. The consent popup always
+appears on first load; GA4 only loads after the user clicks **Enable Analytics**.
 
-Download click events are tracked via `gtag('event', 'download', {...})` with the following custom parameters:
+### Serving / building locally with analytics enabled
 
-| Parameter | Description |
-|---|---|
-| `app_version` | Release version (e.g. `0.5.6`) |
-| `platform` | `mac`, `windows`, or `linux` |
-| `architecture` | `arm64`, `intel`, `x64`, `deb` |
-| `event_label` | Human-readable label (e.g. `mac arm64 v0.5.6`) |
+Pass `GTAG` before calling `npm run serve` or `npm run build`.
+Both commands read the same environment variable — `npm run serve` builds first and
+then starts the static server, so the injected GTAG is live at `http://localhost:4000`.
 
-To view download events in GA4: **Reports → Engage → Events → `download`**
+**Linux / macOS**
+
+```bash
+GTAG=G-XXX npm run serve
+GTAG=G-XXX npm run build   # build only, no server
+```
+
+**Windows — Command Prompt**
+
+```cmd
+set GTAG=G-XXX && npm run serve
+set GTAG=G-XXX && npm run build
+```
+
+**Windows — PowerShell**
+
+```powershell
+$env:GTAG = "G-XXX"; npm run serve
+$env:GTAG = "G-XXX"; npm run build
+```
+
+Replace `G-XXX` with your actual GA4 Measurement ID.
+
+> **Without `GTAG`:** Running `npm run serve` or `npm run build` without the variable
+> is fine — the inject script will warn that no GTAG is set, the consent popup will
+> still appear, but GA4 will not load even if the user accepts. This is the expected
+> behaviour for local builds.
+
+### How the injection works
+
+`npm run build` runs two steps in sequence:
+
+**Step 1 — `node scripts/generate-config.js`** (pre-build)
+
+1. Fetches the GitHub Releases API (authenticated in CI via `GITHUB_TOKEN`)
+2. Writes `releases.json` — the raw API response array (gitignored)
+3. Writes `docs/assets/js/analytics-config.js` (gitignored) containing:
+   - `window.CELLHASHER_GTAG` — the GA4 Measurement ID from the `GTAG` env var
+   - `window.CELLHASHER_RELEASES` — the raw releases array as a browser-side fallback
+   - An IIFE that creates a `<style>` tag from `docs/assets/css/consent.css`
+
+Both output files are gitignored; they are always regenerated at build time.
+
+**Step 2 — `honkit build . _book`** (build)
+
+`honkit-plugin-add-js` (configured in `book.json → pluginsConfig.add-js.js`) copies
+the three files below into HonKit's asset pipeline and injects a `<script>` tag for
+each into every built page, **in this order**:
+
+1. `analytics-config.js` — sets globals + injects CSS (must be first)
+2. `consent.js`          — reads `window.CELLHASHER_GTAG`, shows modal if needed
+3. `os-detect.js`        — fetches GitHub Releases API, wires download buttons; falls back to `window.CELLHASHER_RELEASES` on error
+
+### Download event tracking
+
+Download click events fire via `gtag('event', 'download', { os, version })`.
+The `gtag` function is only defined after the user grants consent, so no events
+are sent if analytics is disabled.
+
+To view download events in GA4: **Reports → Engagement → Events → `download`**
+
+### Updating the Measurement ID in CI
+
+The `GTAG` value in GitHub Actions comes from a **repository variable** (not a secret):
+
+1. Go to your repository → **Settings → Secrets and variables → Actions → Variables**.
+2. Create or update a variable named `GTAG` with your GA4 Measurement ID.
+3. The workflow passes it as `GTAG: ${{ vars.GTAG }}` in the build step — no code
+   changes are required.
 
 ---
 

@@ -1,0 +1,10 @@
+{
+  "name": "honkit-plugin-add-js",
+  "version": "1.0.0",
+  "description": "HonKit add-js plugin with path-creation fix for CI temp directories",
+  "main": "index.js",
+  "engines": {
+    "honkit": ">=1.x"
+  },
+  "license": "Apache-2.0"
+}

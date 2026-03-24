@@ -9,10 +9,19 @@
   "ignore": [
     "node_modules",
     "_book",
-    "LOCAL-DEVELOPMENT.md"
+    "LOCAL-DEVELOPMENT.md",
+    "docs/assets/css",
+    "scripts"
   ],
-  "plugins": ["chollapse", "-sharing", "-fontsettings", "-livereload"],
+  "plugins": ["add-js", "chollapse", "-sharing", "-fontsettings", "-livereload"],
   "pluginsConfig": {
+    "add-js": {
+      "js": [
+        "./docs/assets/js/analytics-config.js",
+        "./docs/assets/js/consent.js",
+        "./docs/assets/js/os-detect.js"
+      ]
+    },
     "chollapse": {}
   }
 }

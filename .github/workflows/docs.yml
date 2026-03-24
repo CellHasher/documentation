@@ -5,11 +5,15 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  workflow_dispatch:
 
 permissions:
   contents: read
   pages: write
   id-token: write
+
+env:
+  retention_days: 3
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
@@ -30,7 +34,7 @@ jobs:
           cache: "npm"
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Lint Markdown
         run: npm run lint
@@ -55,13 +59,41 @@ jobs:
           cache: "npm"
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
       - name: Build with HonKit
+        # npm run build executes two steps:
+        #   1. node scripts/generate-config.js
+        #        - Fetches https://api.github.com/repos/CellHasher/Beta-Cellhasher/releases?per_page=3
+        #          (authenticated via GITHUB_TOKEN for 5 000 req/hr instead of 60)
+        #        - Writes releases.json  (gitignored build artifact)
+        #        - Writes docs/assets/js/analytics-config.js  (gitignored build artifact)
+        #          containing GTAG, the raw releases array as a browser fallback, and
+        #          the inlined consent.css
+        #   2. honkit build . _book
+        #        honkit-plugin-add-js injects analytics-config.js → consent.js → os-detect.js
+        #        into every built page in that order.
         run: npm run build
+        env:
+          # GA4 Measurement ID — set as a repository variable (vars.GTAG) in
+          # GitHub → Settings → Variables → Actions.
+          # Leave unset to build without analytics (consent popup still appears).
+          GTAG: ${{ vars.GTAG }}
+          # Authenticates the GitHub API request in generate-config.js.
+          # GITHUB_TOKEN is provided automatically by Actions — no setup required.
+          # Raises the rate limit from 60 to 5 000 requests per hour.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Copy assets directory
         run: cp -r .gitbook _book/.gitbook 2>/dev/null || true
+
+      - name: Upload web build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-build
+          path: dist/
+          retention-days: ${{ env.retention_days }}
+          if-no-files-found: warn
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

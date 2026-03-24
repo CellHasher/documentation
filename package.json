@@ -3,12 +3,16 @@
   "version": "1.0.0",
   "description": "Official documentation for Cellhasher",
   "scripts": {
-    "build": "honkit build . _book",
-    "serve": "honkit serve .",
+    "build": "node scripts/generate-config.js && honkit build . _book",
+    "serve": "npm run build && node scripts/serve.js",
+    "serve:content": "node scripts/generate-config.js && honkit serve .",
     "test": "npm run lint:junit && npm run links",
     "lint": "markdownlint \"**/*.md\" --ignore node_modules --ignore _book",
     "lint:junit": "node -e \"require('fs').mkdirSync('reports/junit', { recursive: true }); require('fs').mkdirSync('reports/coverage', { recursive: true });\" && npx markdownlint-cli2",
     "links": "find . -name '*.md' ! -path './node_modules/*' ! -path './_book/*' -print0 | xargs -0 -I{} markdown-link-check -c .mlc.json --quiet {}"
+  },
+  "dependencies": {
+    "honkit-plugin-add-js": "file:./scripts/honkit-plugin-add-js"
   },
   "devDependencies": {
     "gitbook-plugin-chollapse": "^1.0.1",
