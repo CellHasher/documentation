@@ -19,7 +19,8 @@
       "js": [
         "./docs/assets/js/analytics-config.js",
         "./docs/assets/js/consent.js",
-        "./docs/assets/js/os-detect.js"
+        "./docs/assets/js/os-detect.js",
+        "./docs/assets/js/edit-link.js"
       ]
     },
     "chollapse": {}
