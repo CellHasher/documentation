@@ -11,10 +11,12 @@
     "lint:junit": "node -e \"require('fs').mkdirSync('reports/junit', { recursive: true }); require('fs').mkdirSync('reports/coverage', { recursive: true });\" && npx markdownlint-cli2",
     "links": "find . -name '*.md' ! -path './node_modules/*' ! -path './_book/*' -print0 | xargs -0 -I{} markdown-link-check -c .mlc.json --quiet {}"
   },
+  "dependencies": {
+    "honkit-plugin-add-js": "file:./scripts/honkit-plugin-add-js"
+  },
   "devDependencies": {
     "gitbook-plugin-chollapse": "^1.0.1",
     "honkit": "^6.1.7",
-    "honkit-plugin-add-js": "^1.0.0",
     "markdown-link-check": "^3.13.6",
     "markdownlint-cli": "^0.43.0",
     "markdownlint-cli2": "^0.22.0",
