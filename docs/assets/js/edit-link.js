@@ -7,6 +7,7 @@
   'use strict';
 
   var GITHUB_EDIT_BASE = 'https://github.com/CellHasher/documentation/edit/main/';
+  var ROUTE_PREFIX_TO_REMOVE = 'documentation';
 
   /* Convert an HTML path to a GitHub MD path */
   function dataPathToMdPath(dataPath) {
@@ -21,6 +22,15 @@
     var pathname = window.location.pathname;
     // Strip leading slash and any base path segments to get the page-relative path
     var pagePath = pathname.replace(/^\//, '');
+
+    if (ROUTE_PREFIX_TO_REMOVE) {
+      var routePrefix = ROUTE_PREFIX_TO_REMOVE.replace(/^\/+|\/+$/g, '') + '/';
+      if (pagePath.indexOf(routePrefix) === 0) {
+        pagePath = pagePath.slice(routePrefix.length);
+      } else if (pagePath === ROUTE_PREFIX_TO_REMOVE.replace(/^\/+|\/+$/g, '')) {
+        pagePath = '';
+      }
+    }
 
     // Root or empty → fall back to data-path (handles localhost:4000/ etc.)
     if (!pagePath || pagePath === '/' || pagePath === 'index.html') {
