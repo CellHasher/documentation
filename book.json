@@ -8,9 +8,10 @@
   },
   "ignore": [
     "node_modules",
+    ".vscode",
+    ".github",
     "_book",
     "LOCAL-DEVELOPMENT.md",
-    "docs/assets/css",
     "scripts"
   ],
   "plugins": ["add-js", "chollapse", "-sharing", "-fontsettings", "-livereload"],
