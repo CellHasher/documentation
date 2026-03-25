@@ -87,6 +87,10 @@ jobs:
       - name: Copy assets directory
         run: cp -r .gitbook _book/.gitbook 2>/dev/null || true
 
+      - name: Clean generated output
+        run: |
+          rm -rf _book/.github _book/.vscode _book/scripts _book/node_modules _book/.gitignore _book/.gitlab-ci.yml _book/.markdownlint-cli2.jsonc _book/.markdownlint.json _book/.mlc.json || true
+
       - name: Upload web build artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -96,6 +100,7 @@ jobs:
           if-no-files-found: warn
 
       - name: Upload Pages artifact
+        if: github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main'
         uses: actions/upload-pages-artifact@v3
         with:
           path: _book
