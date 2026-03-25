@@ -8,6 +8,8 @@
   },
   "ignore": [
     "node_modules",
+    ".vscode",
+    ".github",
     "_book",
     "LOCAL-DEVELOPMENT.md",
     "docs/assets/css",
