@@ -12,20 +12,12 @@ hidden: true
 
 ### Automatic Download
 
-The button below detects your operating system and links you to the correct installer from the latest release.
-
 <div id="ch-download-container">
   <!-- Auto-detected primary download — shown by os-detect.js when a match is found -->
   <div id="ch-auto-download" hidden>
     <a id="ch-download-primary" href="javascript:void(0)" class="ch-download-btn" aria-label="Download for detected OS">
       <span id="ch-download-primary-text">Detecting your OS&hellip;</span>
     </a>
-    <p>
-      <small
-        >Version detected from the latest GitHub release. Download events fire
-        only if you have enabled analytics.</small
-      >
-    </p>
   </div>
 
   <!-- Manual / fallback section — always visible; individual items hidden if no asset exists -->
