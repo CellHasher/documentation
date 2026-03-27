@@ -24,7 +24,7 @@ description: >-
 
 > **ℹ️ Note:** You may receive a warning prompt when opening the application. This is due to Cellhasher Control being in beta release and will be resolved at full release.
 
-1. Download the installer for your operating system below:
+Download the installer for your operating system below:
 
 <div id="ch-download-container">
   <!-- Auto-detected primary download — shown by os-detect.js when a match is found -->
@@ -32,17 +32,11 @@ description: >-
     <a id="ch-download-primary" href="javascript:void(0)" class="ch-download-btn" aria-label="Download for detected OS">
       <span id="ch-download-primary-text">Detecting your OS&hellip;</span>
     </a>
-    <p>
-      <small
-        >Version detected from the latest GitHub release. Download events fire
-        only if you have enabled analytics.</small
-      >
-    </p>
   </div>
 
   <!-- Manual / fallback section — always visible; individual items hidden if no asset exists -->
   <div id="ch-fallback-download" hidden>
-    <h4>Choose your platform:</h4>
+    <h5>Choose your platform:</h5>
     <ul>
       <li id="ch-li-windows">
         <a
