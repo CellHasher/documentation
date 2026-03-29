@@ -92,7 +92,9 @@
   display: inline-block;
   padding: 0.8rem 1.6rem;
   background: #0066cc;
-  text-decoration: none !important;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
   border-radius: 8px;
   font-size: 1rem;
   font-weight: 600;
@@ -105,7 +107,28 @@
   box-shadow: 0 3px 10px rgba(0, 102, 204, 0.4);
 }
 
+/* Fallback platform list — link-style buttons */
+#ch-fallback-download ul button {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #0066cc;
+  cursor: pointer;
+  font-size: inherit;
+  font-family: inherit;
+  text-decoration: underline;
+}
+
+#ch-fallback-download ul button:hover {
+  opacity: 0.75;
+}
+
+#ch-fallback-download ul button:focus-visible {
+  outline: 3px solid #0066cc;
+  outline-offset: 2px;
+}
+
 #ch-auto-download[hidden],
 #ch-fallback-download[hidden] {
-  display: none;
+  display: none !important;
 }
