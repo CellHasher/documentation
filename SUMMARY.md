@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Welcome to Cellhasher](README.md)
+* [Store](https://cellhasher.com/)
 
 ## Cellhasher Chassis
 
