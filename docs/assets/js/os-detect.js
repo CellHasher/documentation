@@ -35,10 +35,11 @@
   /* ------------------------------------------------------------------ */
   function assetMatchesOS(name, os) {
     var n = name.toLowerCase();
-    if (os === 'windows')   return /\.exe$/.test(n);
-    if (os === 'mac-arm64') return /aarch64.*\.dmg$/.test(n);
-    if (os === 'mac-intel') return /\.dmg$/.test(n) && !/aarch64/.test(n);
-    if (os === 'linux')     return /\.deb$/.test(n);
+    if (os === 'windows')         return /\.exe$/.test(n);
+    if (os === 'mac-arm64')       return /aarch64.*\.dmg$/.test(n);
+    if (os === 'mac-intel')       return /\.dmg$/.test(n) && !/aarch64/.test(n);
+    if (os === 'linux')           return /\.deb$/.test(n);
+    if (os === 'linux-appimage')  return /\.appimage$/.test(n);
     return false;
   }
 
@@ -48,8 +49,8 @@
   /*        each value: { url, version } | null                          */
   /* ------------------------------------------------------------------ */
   function resolveFromReleases(releases) {
-    var keys  = ['windows', 'mac-arm64', 'mac-intel', 'linux'];
-    var found = { windows: null, 'mac-arm64': null, 'mac-intel': null, linux: null };
+    var keys  = ['windows', 'mac-arm64', 'mac-intel', 'linux', 'linux-appimage'];
+    var found = { windows: null, 'mac-arm64': null, 'mac-intel': null, linux: null, 'linux-appimage': null };
     var filled = 0;
 
     for (var i = 0; i < releases.length && filled < keys.length; i++) {
@@ -124,18 +125,36 @@
   /* DOM helpers                                                          */
   /* ------------------------------------------------------------------ */
   function show(id) { var el = document.getElementById(id); if (el) el.removeAttribute('hidden'); }
-  function hide(id) { var el = document.getElementById(id); if (el) el.setAttribute('hidden', ''); }
 
-  function wireLink(id, asset, osKey) {
-    var el = document.getElementById(id);
-    if (!el) return;
-    if (!asset) { hide(id); return; }
-    // el.href = asset.url;
-    el.setAttribute('onclick',
-      'window.trackAndDownload(' +
-      JSON.stringify(osKey) + ',' +
-      JSON.stringify(asset.version) + ',' +
-      JSON.stringify(asset.url) + ');return false');
+  var PLATFORM_ORDER  = ['windows', 'mac-arm64', 'mac-intel', 'linux', 'linux-appimage'];
+  var PLATFORM_LABELS = {
+    'windows'       : 'Windows (x64)',
+    'mac-arm64'     : 'macOS \u2014 Apple Silicon (arm64)',
+    'mac-intel'     : 'macOS \u2014 Intel (x64)',
+    'linux'         : 'Linux (.deb, amd64)',
+    'linux-appimage': 'Linux (.AppImage, amd64)'
+  };
+
+  function renderPlatformList(found) {
+    var ul = document.getElementById('ch-platform-list');
+    if (!ul) return;
+    ul.innerHTML = '';
+    for (var i = 0; i < PLATFORM_ORDER.length; i++) {
+      var key   = PLATFORM_ORDER[i];
+      var asset = found[key];
+      if (!asset) continue;
+      var li  = document.createElement('li');
+      var btn = document.createElement('button');
+      btn.type        = 'button';
+      btn.textContent = PLATFORM_LABELS[key] || key;
+      btn.setAttribute('onclick',
+        'window.trackAndDownload(' +
+        JSON.stringify(key) + ',' +
+        JSON.stringify(asset.version) + ',' +
+        JSON.stringify(asset.url) + ');return false');
+      li.appendChild(btn);
+      ul.appendChild(li);
+    }
   }
 
   /* ------------------------------------------------------------------ */
@@ -144,19 +163,17 @@
   function render(found) {
     var os = detectOS();
 
-    wireLink('ch-dl-windows',   found.windows,     'windows');
-    wireLink('ch-dl-mac-arm',   found['mac-arm64'], 'mac-arm64');
-    wireLink('ch-dl-mac-intel', found['mac-intel'], 'mac-intel');
-    wireLink('ch-dl-linux',     found.linux,        'linux');
+    renderPlatformList(found);
     show('ch-fallback-download');
 
     var osAsset = os ? found[os] : null;
     if (osAsset) {
       var labels = {
-        'windows'  : 'Download for Windows',
-        'mac-arm64': 'Download for macOS \u2014 Apple Silicon',
-        'mac-intel': 'Download for macOS \u2014 Intel',
-        'linux'    : 'Download for Linux (.deb)'
+        'windows'       : 'Download for Windows',
+        'mac-arm64'     : 'Download for macOS \u2014 Apple Silicon',
+        'mac-intel'     : 'Download for macOS \u2014 Intel',
+        'linux'         : 'Download for Linux (.deb)',
+        'linux-appimage': 'Download for Linux (.AppImage)'
       };
       var btn  = document.getElementById('ch-download-primary');
       var text = document.getElementById('ch-download-primary-text');

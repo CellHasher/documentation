@@ -15,44 +15,15 @@ hidden: true
 <div id="ch-download-container">
   <!-- Auto-detected primary download — shown by os-detect.js when a match is found -->
   <div id="ch-auto-download" hidden>
-    <a id="ch-download-primary" href="javascript:void(0)" class="ch-download-btn" aria-label="Download for detected OS">
+    <button id="ch-download-primary" type="button" class="ch-download-btn" aria-label="Download for detected OS">
       <span id="ch-download-primary-text">Detecting your OS&hellip;</span>
-    </a>
+    </button>
   </div>
 
   <!-- Manual / fallback section — always visible; individual items hidden if no asset exists -->
   <div id="ch-fallback-download" hidden>
     <h4>Choose your platform:</h4>
-    <ul>
-      <li id="ch-li-windows">
-        <a
-          id="ch-dl-windows"
-          href="javascript:void(0)"
-          >Windows (x64)</a
-        >
-      </li>
-      <li id="ch-li-mac-arm">
-        <a
-          id="ch-dl-mac-arm"
-          href="javascript:void(0)"
-          >macOS &mdash; Apple Silicon (arm64)</a
-        >
-      </li>
-      <li id="ch-li-mac-intel">
-        <a
-          id="ch-dl-mac-intel"
-          href="javascript:void(0)"
-          >macOS &mdash; Intel (x64)</a
-        >
-      </li>
-      <li id="ch-li-linux">
-        <a
-          id="ch-dl-linux"
-          href="javascript:void(0)"
-          >Linux (.deb, amd64)</a
-        >
-      </li>
-    </ul>
+    <ul id="ch-platform-list"></ul>
     <p>
       Or
       <a
