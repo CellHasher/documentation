@@ -43,13 +43,17 @@ hidden: true
 | **Windows** | `.exe` installer | Run the installer and follow the prompts. |
 | **macOS — Apple Silicon** | `.dmg` | Open the `.dmg`, drag to Applications. You may need to run `xattr -cr /Applications/cellhasher_controller.app` if macOS flags the app. |
 | **macOS — Intel** | `.dmg` | Open the `.dmg`, drag to Applications. Same quarantine note as above. |
-| **Linux** | `.deb` | `sudo dpkg -i cellhasher_controller_*.deb` |
+| **Linux — deb** | `.deb` | `sudo dpkg -i cellhasher_controller_*.deb` |
+| **Linux — appimage** | `.AppImage` | `chmod +x cellhasher_controller_*.AppImage` AppImages require FUSE to run. `sudo apt install libfuse2` *x11* driver is recommended. `echo $XDG_SESSION_TYPE` |
 
 > **Privacy notice:** Download button clicks are tracked only if you have enabled analytics
 > in the consent prompt. You can change your preference at any time by clearing the
 > `cellhasher_analytics` key from your browser's `localStorage`.
 
 ---
+
+* [debugging](./debugging)
+
 
 ## 2. Download Additional Requirements
 
