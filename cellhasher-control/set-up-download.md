@@ -24,32 +24,7 @@ description: >-
 
 > **ℹ️ Note:** You may receive a warning prompt when opening the application. This is due to Cellhasher Control being in beta release and will be resolved at full release.
 
-Download the installer for your operating system below:
-
-<div id="ch-download-container">
-  <!-- Auto-detected primary download — shown by os-detect.js when a match is found -->
-  <div id="ch-auto-download" hidden>
-    <button id="ch-download-primary" type="button" class="ch-download-btn" aria-label="Download for detected OS">
-      <span id="ch-download-primary-text">Detecting your OS&hellip;</span>
-    </button>
-  </div>
-
-  <!-- Manual / fallback section — always visible; individual items hidden if no asset exists -->
-  <div id="ch-fallback-download" hidden>
-    <h5>Choose your platform:</h5>
-    <ul id="ch-platform-list"></ul>
-    <p>
-      Or
-      <a
-        href="https://github.com/CellHasher/Beta-Cellhasher/releases"
-        target="_blank"
-        rel="noopener noreferrer"
-        >browse all releases on GitHub</a
-      >.
-    </p>
-  </div>
-</div>
-
+1. [Download the latest release for your OS here.](https://github.com/CellHasher/Beta-Cellhasher/releases)
 2. Run the installer and follow the on-screen instructions.
 3. Cellhasher Control is in beta — check the GitHub releases page regularly for new builds.
 
