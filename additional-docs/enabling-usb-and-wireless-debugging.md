@@ -35,7 +35,7 @@ For a visual walkthrough, here are guides for popular devices:
 
 ***
 
-## 2. Turning on USB Debugging and Optional Settings
+### 2. Turning on USB Debugging and Optional Settings
 
 In Developer Options, locate each of the settings below and toggle accordingly.
 
@@ -57,7 +57,7 @@ In Developer Options, locate each of the settings below and toggle accordingly.
 
 ***
 
-## 3. Authorize Connection
+### 3. Authorize Connection
 
 > **ℹ️ Note:** If you intend to use a Windows/Linux PC with Cellhasher Control, you may need to have Cellhasher Control open during this step to trigger the authorization prompt. Therefore, it's recommended to complete [set-up-download.md](../cellhasher-control/set-up-download.md) and set the correct paths in [settings.md](../cellhasher-control/tabs-walkthrough/settings.md) if you do not encounter a prompt.
 

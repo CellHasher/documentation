@@ -200,7 +200,7 @@
   /* page change triggers a clean init.                                  */
   /* ------------------------------------------------------------------ */
   function tryInit() {
-    var releaseLink = document.querySelector(`[href="https://github.com/CellHasher/Beta-Cellhasher/releases"]`).parentElement;
+    var releaseLink = document.querySelector(`[href="https://github.com/CellHasher/Beta-Cellhasher/releases"]`)?.parentElement;
     if (releaseLink?.tagName == "LI") {
       releaseLink.innerHTML = `<div id="ch-download-container">
         <!-- Auto-detected primary download — shown by os-detect.js when a match is found -->
