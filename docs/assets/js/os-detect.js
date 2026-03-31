@@ -200,6 +200,32 @@
   /* page change triggers a clean init.                                  */
   /* ------------------------------------------------------------------ */
   function tryInit() {
+    var releaseLink = document.querySelector(`[href="https://github.com/CellHasher/Beta-Cellhasher/releases"]`)?.parentElement;
+    if (releaseLink?.tagName == "LI") {
+      releaseLink.innerHTML = `<div id="ch-download-container">
+        <!-- Auto-detected primary download — shown by os-detect.js when a match is found -->
+        <div id="ch-auto-download" hidden>
+          <button id="ch-download-primary" type="button" class="ch-download-btn" aria-label="Download for detected OS">
+            <span id="ch-download-primary-text">Detecting your OS&hellip;</span>
+          </button>
+        </div>
+
+        <!-- Manual / fallback section — always visible; individual items hidden if no asset exists -->
+        <div id="ch-fallback-download" hidden>
+          <h4>Choose your platform:</h4>
+          <ul id="ch-platform-list"></ul>
+          <p>
+            Or
+            <a
+              href="https://github.com/CellHasher/Beta-Cellhasher/releases"
+              target="_blank"
+              rel="noopener noreferrer"
+              >browse all releases on GitHub</a
+            >.
+          </p>
+        </div>
+      </div>`
+    }
     var container = document.getElementById('ch-download-container');
     if (!container) return;
     if (container.getAttribute('data-ch-init')) return; // already initialised
@@ -252,7 +278,7 @@
           var node = added[j];
           if (node.nodeType !== 1) continue; // element nodes only
           if (node.id === 'ch-download-container' ||
-              (node.querySelector && node.querySelector('#ch-download-container'))) {
+              (node.querySelector && (node.querySelector('#ch-download-container') || node.querySelector('[href="https://github.com/CellHasher/Beta-Cellhasher/releases"]')?.parentElement?.tagName === 'LI'))) {
             tryInit();
             return; // one init per mutation batch is enough
           }

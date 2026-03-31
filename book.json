@@ -22,7 +22,8 @@
         "./docs/assets/js/consent.js",
         "./docs/assets/js/os-detect.js",
         "./docs/assets/js/edit-link.js",
-        "./docs/assets/js/copy-code.js"
+        "./docs/assets/js/copy-code.js",
+        "./docs/assets/js/right-toc.js"
       ]
     },
     "chollapse": {}

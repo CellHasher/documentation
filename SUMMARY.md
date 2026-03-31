@@ -22,7 +22,7 @@
   * [Package Manager](cellhasher-control/tabs-walkthrough/package-manager.md)
   * [Scripts](cellhasher-control/tabs-walkthrough/scripts.md)
   * [Terminal](cellhasher-control/tabs-walkthrough/terminal.md)
-  * [Index](cellhasher-control/tabs-walkthrough/index.md)
+  * [Index](cellhasher-control/tabs-walkthrough/indexTab.md)
   * [AI (LLMs)](cellhasher-control/tabs-walkthrough/ai-llms.md)
   * [Settings](cellhasher-control/tabs-walkthrough/settings.md)
 * [Installing](cellhasher-control/installing.md)
