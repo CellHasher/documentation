@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Welcome to Cellhasher](README.md)
+* [Store](https://cellhasher.com/)
 
 ## Cellhasher Chassis
 
@@ -25,6 +26,10 @@
   * [AI (LLMs)](cellhasher-control/tabs-walkthrough/ai-llms.md)
   * [Settings](cellhasher-control/tabs-walkthrough/settings.md)
 * [Installing](cellhasher-control/installing.md)
+* [Debugging](cellhasher-control/debugging/index.md)
+  * [Linux](cellhasher-control/debugging/linux.md)
+  * [macOS](cellhasher-control/debugging/mac.md)
+  * [Windows](cellhasher-control/debugging/windows.md)
 * [How to Use](cellhasher-control/how-to-use/README.md)
   * [Devices](cellhasher-control/how-to-use/devices.md)
   * [Battery](cellhasher-control/how-to-use/battery.md)
