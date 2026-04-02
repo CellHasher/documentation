@@ -57,9 +57,18 @@ body, .book {
   border-right: none !important;
   width: var(--ch-sidebar-width) !important;
   overflow-x: hidden !important;
-  transition: width var(--ch-transition) !important;
-  top: 0 !important;
-  bottom: 0 !important;
+  transition: width var(--ch-transition), transform 0.25s ease !important;
+  top: 12px !important;
+  bottom: 12px !important;
+  left: 12px !important;
+  border-radius: 12px !important;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.04) !important;
+  z-index: 200 !important;
+}
+
+/* Push book body to account for floating sidebar + gap */
+.book .book-body {
+  left: calc(var(--ch-sidebar-width) + 24px) !important;
 }
 
 .book-summary .summary {
@@ -67,6 +76,13 @@ body, .book {
 }
 
 /* Sidebar search */
+.book .book-summary .book-search {
+  padding: 0 !important;
+  margin: 0 !important;
+  background: transparent !important;
+  border: none !important;
+}
+
 .book-summary input[type="text"],
 .book-summary .book-search input {
   background: var(--ch-bg) !important;
@@ -74,7 +90,7 @@ body, .book {
   border-radius: var(--ch-radius) !important;
   color: var(--ch-text) !important;
   padding: 8px 12px !important;
-  margin: 0.5rem 0.75rem !important;
+  margin: 0.25rem 0.75rem 0.5rem !important;
   font-size: 14px !important;
   font-family: var(--ch-font) !important;
   width: calc(100% - 1.5rem) !important;
@@ -94,16 +110,18 @@ body, .book {
 }
 
 /* Sidebar section headers (CELLHASHER CHASSIS, etc.) */
+.book .book-summary ul.summary li.header,
 .book-summary .summary .divider {
   text-transform: uppercase !important;
-  font-size: 12px !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.08em !important;
-  color: var(--ch-text) !important;
-  padding: 1.5rem 1rem 0.5rem !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  color: var(--ch-text-muted) !important;
+  padding: 1.25rem 0.75rem 0.35rem 0.75rem !important;
   margin: 0 !important;
   border: none !important;
   line-height: 1.4 !important;
+  background: transparent !important;
 }
 
 /* Collapse/Expand arrows — move to RIGHT side */
@@ -111,7 +129,8 @@ body, .book {
   position: absolute !important;
   right: 12px !important;
   left: auto !important;
-  top: 12px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
   width: 16px !important;
   height: 16px !important;
   display: flex !important;
@@ -120,24 +139,27 @@ body, .book {
 }
 
 .book .book-summary .exc-trigger::before {
-  content: '\f078' !important; /* Font Awesome chevron-down */
+  content: '\f054' !important; /* Font Awesome chevron-right */
   font-family: 'FontAwesome' !important;
-  font-size: 12px !important;
-  color: var(--ch-text-muted) !important;
+  font-size: 10px !important;
+  color: var(--ch-text-faint) !important;
   transition: transform var(--ch-transition) !important;
 }
 
-.book .book-summary li.expanded .exc-trigger::before {
-  transform: rotate(-180deg) !important;
+.book .book-summary li.expanded > a .exc-trigger::before,
+.book .book-summary li.expanded > span .exc-trigger::before {
+  transform: rotate(90deg) !important;
 }
 
-/* Sidebar nav links — remove extra left padding for arrows */
-.book-summary ul.summary li a,
-.book-summary ul.summary li span {
+/* Sidebar nav links — override chollapse padding */
+.book .book-summary ul.summary li a,
+.book .book-summary ul.summary li span,
+.book .book-summary ul.summary li.chapter a,
+.book .book-summary ul.summary li.chapter span {
   color: var(--ch-text-secondary) !important;
   font-size: 14px !important;
   font-weight: 400 !important;
-  padding: 6px 12px !important;
+  padding: 6px 12px 6px 12px !important;
   margin: 1px 0.5rem !important;
   border-radius: var(--ch-radius-sm) !important;
   transition: all var(--ch-transition) !important;
@@ -146,46 +168,53 @@ body, .book {
   line-height: 1.5 !important;
   border: none !important;
   position: relative !important;
+  background: transparent !important;
 }
 
 .book-summary ul.summary li.has-sub > a {
   padding-right: 32px !important; /* Room for right-side arrow */
 }
 
-.book-summary ul.summary li a:hover {
+.book .book-summary ul.summary li a:hover,
+.book .book-summary ul.summary li.chapter a:hover {
   color: var(--ch-text) !important;
   background: rgba(255, 255, 255, 0.06) !important;
-  border-radius: 6px !important;
 }
 
-/* Active sidebar link — blue text + subtle left highlight */
-.book-summary ul.summary li.active > a,
-.book-summary ul.summary li a.active {
+/* Active sidebar link — ONLY blue text, no background, no border */
+.book .book-summary ul.summary li.active > a,
+.book .book-summary ul.summary li a.active,
+.book .book-summary ul.summary li.chapter.active > a {
   color: var(--ch-blue) !important;
-  font-weight: 600 !important;
-  background: rgba(68, 165, 242, 0.08) !important;
-  border-left: 2px solid var(--ch-blue) !important;
-  padding-left: 10px !important;
+  font-weight: 500 !important;
+  background: transparent !important;
+  border: none !important;
+  border-left: none !important;
+  padding-left: 12px !important;
 }
 
 /* Nested sidebar items */
-.book-summary ul.summary li ul li a {
-  padding-left: 1.5rem !important;
-  font-size: 13px !important;
+.book .book-summary ul.summary li ul.articles li a {
+  padding-left: 1.75rem !important;
+  font-size: 13.5px !important;
 }
 
-.book-summary ul.summary li ul li.active > a {
-  padding-left: calc(1.5rem - 2px) !important;
+.book .book-summary ul.summary li ul.articles li.active > a {
+  padding-left: 1.75rem !important;
 }
 
-.book-summary ul.summary li ul li ul li a {
-  padding-left: 2.25rem !important;
+.book .book-summary ul.summary li ul.articles li ul.articles li a {
+  padding-left: 2.5rem !important;
 }
 
 /* Hide "Published with HonKit" */
 .book-summary .powered-by,
-.book-summary .gitbook-link {
+.book-summary .gitbook-link,
+.book .book-summary .summary .powered-by {
   display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  overflow: hidden !important;
 }
 
 /* ---------- Sidebar Brand Header ---------- */
@@ -356,8 +385,14 @@ body, .book {
 /* ---------- Lists ---------- */
 .page-inner section ol,
 .page-inner section ul {
-  padding-left: 1.5rem !important;
+  padding-left: 2em !important;
   margin: 0 0 1.25rem !important;
+  overflow: visible !important;
+  list-style-position: outside !important;
+}
+
+.page-inner section ul {
+  list-style-type: disc !important;
 }
 
 .page-inner section ol li,
@@ -365,6 +400,17 @@ body, .book {
   margin-bottom: 0.5rem !important;
   line-height: 28px !important;
   color: var(--ch-text-secondary) !important;
+  overflow: visible !important;
+  padding-left: 0.25em !important;
+}
+
+/* Ensure nested lists also show properly */
+.page-inner section ul ul {
+  list-style-type: circle !important;
+}
+
+.page-inner section ul ul ul {
+  list-style-type: square !important;
 }
 
 /* ---------- Images ---------- */
@@ -692,6 +738,18 @@ pre button[aria-label="Copy code to clipboard"]:hover {
 
 /* ---------- Responsive ---------- */
 @media screen and (max-width: 768px) {
+  .book-summary {
+    top: 0 !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: 4px 0 24px rgba(0,0,0,0.5) !important;
+  }
+
+  .book .book-body {
+    left: 0 !important;
+  }
+
   .page-wrapper .page-inner {
     padding: 1.5rem 1rem 3rem !important;
   }
@@ -768,4 +826,26 @@ pre button[aria-label="Copy code to clipboard"]:hover {
   .page-inner section a {
     color: #0066cc !important;
   }
+}
+
+/* ---------- Chollapse Plugin Overrides ---------- */
+/* The chollapse plugin forces padding-left: 30px on ALL sidebar links.
+   These overrides MUST come last to win specificity. */
+.book .book-summary ul.summary li a,
+.book .book-summary ul.summary li span {
+  padding-left: 12px !important;
+}
+.book .book-summary ul.summary li ul.articles li a,
+.book .book-summary ul.summary li ul.articles li span {
+  padding-left: 1.75rem !important;
+}
+.book .book-summary ul.summary li ul.articles li ul.articles li a {
+  padding-left: 2.5rem !important;
+}
+
+/* Ensure content area doesn't clip list markers */
+.book .book-body .page-wrapper .page-inner,
+.book .book-body .page-wrapper .page-inner section,
+.book .book-body .page-wrapper .page-inner section.normal {
+  overflow: visible !important;
 }
