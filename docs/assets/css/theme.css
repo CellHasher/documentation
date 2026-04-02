@@ -51,10 +51,10 @@ body, .book {
   color: inherit;
 }
 
-/* ---------- Sidebar ---------- */
+/* ---------- Sidebar — Floating Panel Design ---------- */
 .book-summary {
   background: var(--ch-bg-sidebar) !important;
-  border-right: 1px solid var(--ch-border-subtle) !important;
+  border-right: none !important;
   width: var(--ch-sidebar-width) !important;
   overflow-x: hidden !important;
   transition: width var(--ch-transition) !important;
@@ -96,17 +96,42 @@ body, .book {
 /* Sidebar section headers (CELLHASHER CHASSIS, etc.) */
 .book-summary .summary .divider {
   text-transform: uppercase !important;
-  font-size: 11px !important;
+  font-size: 12px !important;
   font-weight: 700 !important;
-  letter-spacing: 0.04em !important;
+  letter-spacing: 0.08em !important;
   color: var(--ch-text) !important;
-  padding: 1.5rem 1rem 0.4rem !important;
+  padding: 1.5rem 1rem 0.5rem !important;
   margin: 0 !important;
   border: none !important;
   line-height: 1.4 !important;
 }
 
-/* Sidebar nav links */
+/* Collapse/Expand arrows — move to RIGHT side */
+.book .book-summary .exc-trigger {
+  position: absolute !important;
+  right: 12px !important;
+  left: auto !important;
+  top: 12px !important;
+  width: 16px !important;
+  height: 16px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.book .book-summary .exc-trigger::before {
+  content: '\f078' !important; /* Font Awesome chevron-down */
+  font-family: 'FontAwesome' !important;
+  font-size: 12px !important;
+  color: var(--ch-text-muted) !important;
+  transition: transform var(--ch-transition) !important;
+}
+
+.book .book-summary li.expanded .exc-trigger::before {
+  transform: rotate(-180deg) !important;
+}
+
+/* Sidebar nav links — remove extra left padding for arrows */
 .book-summary ul.summary li a,
 .book-summary ul.summary li span {
   color: var(--ch-text-secondary) !important;
@@ -120,11 +145,17 @@ body, .book {
   text-decoration: none !important;
   line-height: 1.5 !important;
   border: none !important;
+  position: relative !important;
+}
+
+.book-summary ul.summary li.has-sub > a {
+  padding-right: 32px !important; /* Room for right-side arrow */
 }
 
 .book-summary ul.summary li a:hover {
   color: var(--ch-text) !important;
   background: rgba(255, 255, 255, 0.06) !important;
+  border-radius: 6px !important;
 }
 
 /* Active sidebar link — blue text + subtle left highlight */
@@ -139,16 +170,16 @@ body, .book {
 
 /* Nested sidebar items */
 .book-summary ul.summary li ul li a {
-  padding-left: 2rem !important;
+  padding-left: 1.5rem !important;
   font-size: 13px !important;
 }
 
 .book-summary ul.summary li ul li.active > a {
-  padding-left: calc(2rem - 2px) !important;
+  padding-left: calc(1.5rem - 2px) !important;
 }
 
 .book-summary ul.summary li ul li ul li a {
-  padding-left: 2.75rem !important;
+  padding-left: 2.25rem !important;
 }
 
 /* Hide "Published with HonKit" */
@@ -217,6 +248,26 @@ body, .book {
   color: var(--ch-text) !important;
 }
 
+/* ---------- Section Breadcrumb ---------- */
+#ch-breadcrumb {
+  color: var(--ch-blue) !important;
+  text-transform: uppercase !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  margin-bottom: 1rem !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem !important;
+  font-family: var(--ch-font) !important;
+}
+
+#ch-breadcrumb svg {
+  width: 14px !important;
+  height: 14px !important;
+  flex-shrink: 0 !important;
+}
+
 /* ---------- Main Content Area ---------- */
 .book-body {
   background: var(--ch-bg) !important;
@@ -244,7 +295,7 @@ body, .book {
   font-weight: 700 !important;
   color: var(--ch-text) !important;
   letter-spacing: -0.02em !important;
-  margin: 0 0 0.5rem !important;
+  margin: 0 0 1rem !important;
   line-height: 45px !important;
   padding-bottom: 0 !important;
   border-bottom: none !important;
@@ -348,6 +399,7 @@ body, .book {
   border: 1px solid var(--ch-border) !important;
   margin: 1rem 0 1.5rem !important;
   box-shadow: none !important;
+  position: relative !important;
 }
 
 .page-inner section code {
@@ -403,16 +455,37 @@ body, .book {
 }
 
 /* ---------- Blockquotes / Hint Blocks ---------- */
-/* GitBook-style: subtle dark background, emoji icon prefix */
+/* GitBook-style: dark background with colored left borders based on type */
 .page-inner section blockquote {
   background: var(--ch-bg-hint) !important;
   border: 1px solid var(--ch-border-subtle) !important;
-  border-left: none !important;
+  border-left: 4px solid var(--ch-border) !important;
   border-radius: var(--ch-radius) !important;
   padding: 1rem 1.25rem !important;
   margin: 1.25rem 0 !important;
   color: var(--ch-text-secondary) !important;
   font-size: 16px !important;
+}
+
+/* Hint type variations */
+.page-inner section blockquote.hint-info {
+  border-left-color: var(--ch-blue) !important;
+  background: rgba(68, 165, 242, 0.05) !important;
+}
+
+.page-inner section blockquote.hint-warning {
+  border-left-color: var(--ch-orange) !important;
+  background: rgba(224, 155, 19, 0.05) !important;
+}
+
+.page-inner section blockquote.hint-danger {
+  border-left-color: var(--ch-red) !important;
+  background: rgba(229, 83, 75, 0.05) !important;
+}
+
+.page-inner section blockquote.hint-success {
+  border-left-color: var(--ch-green) !important;
+  background: rgba(63, 185, 80, 0.05) !important;
 }
 
 .page-inner section blockquote p {
@@ -424,7 +497,7 @@ body, .book {
   margin-bottom: 0 !important;
 }
 
-/* Nested blockquotes (used in some GitBook hint patterns) */
+/* Nested blockquotes */
 .page-inner section blockquote blockquote {
   border: none !important;
   background: transparent !important;
@@ -462,7 +535,7 @@ body, .book {
   background: var(--ch-link-hover) !important;
 }
 
-/* ---------- Right TOC ---------- */
+/* ---------- Right TOC (Table of Contents) ---------- */
 #custom-right-toc {
   background: transparent !important;
   border: none !important;
@@ -486,6 +559,7 @@ body, .book {
   font-family: var(--ch-font) !important;
   transition: color var(--ch-transition) !important;
   line-height: 1.6 !important;
+  text-decoration: none !important;
 }
 
 #custom-right-toc .custom-right-toc-item a:hover {
@@ -494,7 +568,7 @@ body, .book {
 
 #custom-right-toc .custom-right-toc-item.active > a {
   color: var(--ch-blue) !important;
-  font-weight: 500 !important;
+  font-weight: 600 !important;
 }
 
 /* ---------- Edit on GitHub Button ---------- */
@@ -508,12 +582,13 @@ body, .book {
   background: transparent !important;
   border: 1px solid var(--ch-border) !important;
   transition: all var(--ch-transition) !important;
+  cursor: pointer !important;
 }
 
 #ch-edit-link:hover {
   color: var(--ch-text) !important;
   border-color: var(--ch-text-muted) !important;
-  background: transparent !important;
+  background: var(--ch-bg-elevated) !important;
 }
 
 /* ---------- Consent Modal ---------- */
@@ -523,15 +598,19 @@ body, .book {
   border-radius: var(--ch-radius) !important;
   font-family: var(--ch-font) !important;
   color: var(--ch-text) !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
 }
 
 #ch-consent-title {
   font-weight: 700 !important;
   color: var(--ch-text) !important;
+  font-size: 16px !important;
 }
 
 #ch-consent-desc {
   color: var(--ch-text-secondary) !important;
+  font-size: 14px !important;
+  line-height: 1.6 !important;
 }
 
 .ch-btn-primary {
@@ -540,6 +619,14 @@ body, .book {
   font-family: var(--ch-font) !important;
   font-weight: 600 !important;
   color: #fff !important;
+  border: none !important;
+  padding: 8px 16px !important;
+  cursor: pointer !important;
+  transition: background var(--ch-transition) !important;
+}
+
+.ch-btn-primary:hover {
+  background: var(--ch-link-hover) !important;
 }
 
 .ch-btn-secondary {
@@ -548,7 +635,15 @@ body, .book {
   font-weight: 500 !important;
   background: var(--ch-bg) !important;
   color: var(--ch-text-secondary) !important;
-  border-color: var(--ch-border) !important;
+  border: 1px solid var(--ch-border) !important;
+  padding: 8px 16px !important;
+  cursor: pointer !important;
+  transition: all var(--ch-transition) !important;
+}
+
+.ch-btn-secondary:hover {
+  background: var(--ch-bg-elevated) !important;
+  border-color: var(--ch-text-secondary) !important;
 }
 
 /* ---------- Copy Code Button ---------- */
@@ -560,7 +655,9 @@ pre button[aria-label="Copy code to clipboard"] {
   font-family: var(--ch-font) !important;
   font-size: 12px !important;
   font-weight: 500 !important;
-  padding: 3px 10px !important;
+  padding: 4px 12px !important;
+  cursor: pointer !important;
+  transition: all var(--ch-transition) !important;
 }
 
 pre button[aria-label="Copy code to clipboard"]:hover {
@@ -587,6 +684,12 @@ pre button[aria-label="Copy code to clipboard"]:hover {
   background: var(--ch-text-faint);
 }
 
+/* Firefox scrollbar */
+* {
+  scrollbar-color: var(--ch-border) transparent;
+  scrollbar-width: thin;
+}
+
 /* ---------- Responsive ---------- */
 @media screen and (max-width: 768px) {
   .page-wrapper .page-inner {
@@ -607,6 +710,10 @@ pre button[aria-label="Copy code to clipboard"]:hover {
     font-size: 24px !important;
     line-height: 30px !important;
   }
+
+  #custom-right-toc {
+    display: none !important;
+  }
 }
 
 @media screen and (min-width: 1200px) {
@@ -615,22 +722,50 @@ pre button[aria-label="Copy code to clipboard"]:hover {
   }
 }
 
-/* ---------- Focus ---------- */
+/* ---------- Focus and Accessibility ---------- */
 *:focus-visible {
   outline: 2px solid var(--ch-blue) !important;
   outline-offset: 2px !important;
 }
 
-/* ---------- Print ---------- */
+/* ---------- Print Styles ---------- */
 @media print {
-  .book-summary, .book-header, #custom-right-toc, #ch-edit-link {
+  .book-summary, .book-header, #custom-right-toc, #ch-edit-link, #ch-breadcrumb {
     display: none !important;
   }
+
   .book-body {
     position: static !important;
     background: #fff !important;
   }
+
+  .page-wrapper .page-inner {
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
   .page-inner section, .page-inner section p, .page-inner section li {
     color: #000 !important;
+  }
+
+  .page-inner section h1, .page-inner section h2, .page-inner section h3, .page-inner section h4 {
+    color: #000 !important;
+    page-break-after: avoid !important;
+  }
+
+  .page-inner section pre {
+    background: #f5f5f5 !important;
+    color: #000 !important;
+    border: 1px solid #ddd !important;
+  }
+
+  .page-inner section blockquote {
+    background: #f9f9f9 !important;
+    border-left-color: #ccc !important;
+    color: #333 !important;
+  }
+
+  .page-inner section a {
+    color: #0066cc !important;
   }
 }
