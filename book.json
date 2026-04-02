@@ -18,6 +18,7 @@
   "pluginsConfig": {
     "add-js": {
       "js": [
+        "./docs/assets/js/theme.js",
         "./docs/assets/js/analytics-config.js",
         "./docs/assets/js/consent.js",
         "./docs/assets/js/os-detect.js",
