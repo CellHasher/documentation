@@ -9,18 +9,18 @@
 (function () {
   'use strict';
 
-  var RELEASES_API  = 'https://api.github.com/repos/CellHasher/Beta-Cellhasher/releases?per_page=3';
-  var RELEASES_PAGE = 'https://github.com/CellHasher/Beta-Cellhasher/releases';
+  const RELEASES_API    = 'https://api.github.com/repos/CellHasher/Beta-Cellhasher/releases?per_page=3';
+  const LEGACY_API_BASE = 'https://api.github.com/repos/CellHasher/Beta-Cellhasher/releases?per_page=10&page=1';
 
   /** Resolved asset map, cached after the first successful fetch/fallback. */
-  var cachedFound = null;
+  let cachedFound = null;
 
   /* ------------------------------------------------------------------ */
   /* OS detection → internal key                                         */
   /* ------------------------------------------------------------------ */
   function detectOS() {
-    var ua       = (navigator.userAgent || '').toLowerCase();
-    var platform = (navigator.platform  || '').toLowerCase();
+    const ua       = (navigator.userAgent || '').toLowerCase();
+    const platform = (navigator.platform  || '').toLowerCase();
     if (/win/.test(platform) || /windows/.test(ua))            return 'windows';
     if (/mac/.test(platform) || /macintosh|mac os x/.test(ua)) {
       if (/arm/.test(platform)) return 'mac-arm64';
@@ -34,7 +34,7 @@
   /* Asset filename → internal OS key (raw GitHub releases array path)   */
   /* ------------------------------------------------------------------ */
   function assetMatchesOS(name, os) {
-    var n = name.toLowerCase();
+    const n = name.toLowerCase();
     if (os === 'windows')         return /\.exe$/.test(n);
     if (os === 'mac-arm64')       return /aarch64.*\.dmg$/.test(n);
     if (os === 'mac-intel')       return /\.dmg$/.test(n) && !/aarch64/.test(n);
@@ -49,19 +49,19 @@
   /*        each value: { url, version } | null                          */
   /* ------------------------------------------------------------------ */
   function resolveFromReleases(releases) {
-    var keys  = ['windows', 'mac-arm64', 'mac-intel', 'linux', 'linux-appimage'];
-    var found = { windows: null, 'mac-arm64': null, 'mac-intel': null, linux: null, 'linux-appimage': null };
-    var filled = 0;
+    const keys  = ['windows', 'mac-arm64', 'mac-intel', 'linux', 'linux-appimage'];
+    const found = { windows: null, 'mac-arm64': null, 'mac-intel': null, linux: null, 'linux-appimage': null };
+    let filled = 0;
 
-    for (var i = 0; i < releases.length && filled < keys.length; i++) {
-      var rel = releases[i];
+    for (let i = 0; i < releases.length && filled < keys.length; i++) {
+      const rel    = releases[i];
       if (rel.draft) continue;
-      var assets = rel.assets || [];
-      for (var k = 0; k < keys.length; k++) {
-        var key = keys[k];
+      const assets = rel.assets || [];
+      for (let k = 0; k < keys.length; k++) {
+        const key = keys[k];
         if (found[key]) continue;
-        for (var j = 0; j < assets.length; j++) {
-          var a = assets[j];
+        for (let j = 0; j < assets.length; j++) {
+          const a = assets[j];
           if (a.state === 'uploaded' && assetMatchesOS(a.name, key)) {
             found[key] = { url: a.browser_download_url, version: rel.tag_name };
             filled++;
@@ -109,25 +109,22 @@
   /* ------------------------------------------------------------------ */
   function trackAndDownload(os, version, url) {
     if (typeof window.gtag === 'function') {
-      window.gtag('event', 'download_click', {
-        os: os,
-        version: version,
-        url: url
-      });
+      window.gtag('event', 'download_click', { os, version, url });
     }
-    setTimeout(function () {
-      window.location.href = url;
-    }, 150);
+    setTimeout(function () { window.location.href = url; }, 150);
   }
   window.trackAndDownload = trackAndDownload;
 
   /* ------------------------------------------------------------------ */
   /* DOM helpers                                                          */
   /* ------------------------------------------------------------------ */
-  function show(id) { var el = document.getElementById(id); if (el) el.removeAttribute('hidden'); }
+  function show(id) {
+    const el = document.getElementById(id);
+    if (el) el.removeAttribute('hidden');
+  }
 
-  var PLATFORM_ORDER  = ['windows', 'mac-arm64', 'mac-intel', 'linux', 'linux-appimage'];
-  var PLATFORM_LABELS = {
+  const PLATFORM_ORDER  = ['windows', 'mac-arm64', 'mac-intel', 'linux', 'linux-appimage'];
+  const PLATFORM_LABELS = {
     'windows'       : 'Windows (x64)',
     'mac-arm64'     : 'macOS \u2014 Apple Silicon (arm64)',
     'mac-intel'     : 'macOS \u2014 Intel (x64)',
@@ -136,22 +133,18 @@
   };
 
   function renderPlatformList(found) {
-    var ul = document.getElementById('ch-platform-list');
+    const ul = document.getElementById('ch-platform-list');
     if (!ul) return;
     ul.innerHTML = '';
-    for (var i = 0; i < PLATFORM_ORDER.length; i++) {
-      var key   = PLATFORM_ORDER[i];
-      var asset = found[key];
+    for (const key of PLATFORM_ORDER) {
+      const asset = found[key];
       if (!asset) continue;
-      var li  = document.createElement('li');
-      var btn = document.createElement('button');
+      const li  = document.createElement('li');
+      const btn = document.createElement('button');
       btn.type        = 'button';
       btn.textContent = PLATFORM_LABELS[key] || key;
       btn.setAttribute('onclick',
-        'window.trackAndDownload(' +
-        JSON.stringify(key) + ',' +
-        JSON.stringify(asset.version) + ',' +
-        JSON.stringify(asset.url) + ');return false');
+        `window.trackAndDownload(${JSON.stringify(key)},${JSON.stringify(asset.version)},${JSON.stringify(asset.url)});return false`);
       li.appendChild(btn);
       ul.appendChild(li);
     }
@@ -161,32 +154,216 @@
   /* Render — populate the UI from a resolved "found" map                */
   /* ------------------------------------------------------------------ */
   function render(found) {
-    var os = detectOS();
+    const os = detectOS();
 
     renderPlatformList(found);
     show('ch-fallback-download');
 
-    var osAsset = os ? found[os] : null;
+    const osAsset = os ? found[os] : null;
     if (osAsset) {
-      var labels = {
+      const labels = {
         'windows'       : 'Download for Windows',
         'mac-arm64'     : 'Download for macOS \u2014 Apple Silicon',
         'mac-intel'     : 'Download for macOS \u2014 Intel',
         'linux'         : 'Download for Linux (.deb)',
         'linux-appimage': 'Download for Linux (.AppImage)'
       };
-      var btn  = document.getElementById('ch-download-primary');
-      var text = document.getElementById('ch-download-primary-text');
+      const btn  = document.getElementById('ch-download-primary');
+      const text = document.getElementById('ch-download-primary-text');
       if (btn) {
-        // btn.href = osAsset.url;
-        if (text) text.textContent = (labels[os] || 'Download') + '  (v' + osAsset.version + ')';
+        if (text) text.textContent = `${labels[os] || 'Download'}  (v${osAsset.version})`;
         btn.setAttribute('onclick',
-          'window.trackAndDownload(' +
-          JSON.stringify(os) + ',' +
-          JSON.stringify(osAsset.version) + ',' +
-          JSON.stringify(osAsset.url) + ');return false');
+          `window.trackAndDownload(${JSON.stringify(os)},${JSON.stringify(osAsset.version)},${JSON.stringify(osAsset.url)});return false`);
       }
       show('ch-auto-download');
+    }
+  }
+
+  /* ================================================================== */
+  /* Legacy downloads — paginated older releases                         */
+  /* ================================================================== */
+
+  /** Current page's release objects; kept in closure so the change handler can look them up. */
+  let legacyReleases = [];
+
+  /**
+   * Parse the GitHub Link response header.
+   * e.g. <url>; rel="next", <url>; rel="prev"
+   * Returns { next: url|null, prev: url|null }.
+   */
+  function parseLinkHeader(header) {
+    const result = { next: null, prev: null };
+    if (!header) return result;
+    for (const part of header.split(',')) {
+      const m = part.trim().match(/^<([^>]+)>;\s*rel="([^"]+)"/);
+      if (m) result[m[2]] = m[1];
+    }
+    return result;
+  }
+
+  /**
+   * Fetch one page of releases.
+   * Throws on rate-limit (403/429) or any other HTTP error.
+   * Returns { releases[], nextUrl, prevUrl }.
+   */
+  async function fetchLegacyPage(url) {
+    const r = await fetch(url, {
+      headers: {
+        'accept'    : 'application/vnd.github+json',
+        'user-agent': 'cellhasher-docs'
+      }
+    });
+    if (r.status === 403 || r.status === 429) throw new Error(`Rate limited (HTTP ${r.status})`);
+    if (!r.ok)                                throw new Error(`HTTP ${r.status}`);
+    const releases = await r.json();
+    const links    = parseLinkHeader(r.headers.get('Link'));
+    return { releases, nextUrl: links.next, prevUrl: links.prev };
+  }
+
+  /** Populate #ch-legacy-select with a page of releases. */
+  function renderLegacySelect(releases) {
+    legacyReleases = releases;
+    const sel = document.getElementById('ch-legacy-select');
+    if (!sel) return;
+    sel.innerHTML = '';
+
+    const placeholder = document.createElement('option');
+    placeholder.value       = '';
+    placeholder.disabled    = true;
+    placeholder.selected    = true;
+    placeholder.textContent = '\u2014 choose a version \u2014';
+    sel.appendChild(placeholder);
+
+    let hasOptions = false;
+    for (const rel of releases) {
+      if (rel.draft) continue;
+      const opt = document.createElement('option');
+      opt.value       = rel.tag_name;
+      opt.textContent = rel.name && rel.name !== rel.tag_name
+        ? `${rel.tag_name} \u2014 ${rel.name}`
+        : rel.tag_name;
+      sel.appendChild(opt);
+      hasOptions = true;
+    }
+
+    if (!hasOptions) {
+      const empty = document.createElement('option');
+      empty.disabled    = true;
+      empty.textContent = 'No releases on this page';
+      sel.appendChild(empty);
+    }
+  }
+
+  /** Populate #ch-legacy-assets from the assets array of a selected release. */
+  function renderLegacyAssets(assets) {
+    const ul = document.getElementById('ch-legacy-assets');
+    if (!ul) return;
+    ul.innerHTML = '';
+
+    const uploaded = (assets || []).filter(a => a.state === 'uploaded');
+    if (uploaded.length === 0) {
+      const li = document.createElement('li');
+      li.textContent = 'No downloadable assets for this release.';
+      ul.appendChild(li);
+      return;
+    }
+
+    for (const a of uploaded) {
+      const li   = document.createElement('li');
+      const link = document.createElement('a');
+      link.href        = a.browser_download_url;
+      link.textContent = `Download (${a.name})`;
+      link.target      = '_blank';
+      link.rel         = 'noopener noreferrer';
+      li.appendChild(link);
+      ul.appendChild(li);
+    }
+  }
+
+  /**
+   * Wire up the legacy section toggle, pagination, and release→assets flow.
+   * Called once per container init, after the HTML has been injected.
+   */
+  function initLegacy() {
+    const toggle  = document.getElementById('ch-legacy-toggle');
+    const panel   = document.getElementById('ch-legacy-panel');
+    const sel     = document.getElementById('ch-legacy-select');
+    const prevBtn = document.getElementById('ch-legacy-prev');
+    const nextBtn = document.getElementById('ch-legacy-next');
+
+    if (!toggle || !panel || !sel) return;
+
+    let currentNextUrl = null;
+    let currentPrevUrl = null;
+    let loaded         = false;
+
+    async function loadPage(url) {
+      sel.disabled = true;
+      if (prevBtn) prevBtn.hidden = true;
+      if (nextBtn) nextBtn.hidden = true;
+
+      const statusEl = document.getElementById('ch-legacy-assets');
+      if (statusEl) statusEl.innerHTML = '<li>Loading\u2026</li>';
+
+      try {
+        const { releases, nextUrl, prevUrl } = await fetchLegacyPage(url);
+        currentNextUrl = nextUrl;
+        currentPrevUrl = prevUrl;
+
+        renderLegacySelect(releases);
+
+        if (prevBtn) prevBtn.hidden = !prevUrl;
+        if (nextBtn) nextBtn.hidden = !nextUrl;
+        if (statusEl) statusEl.innerHTML = '';
+      } catch (err) {
+        if (statusEl) {
+          const li   = document.createElement('li');
+          const link = document.createElement('a');
+          link.href        = 'https://github.com/CellHasher/Beta-Cellhasher/releases';
+          link.target      = '_blank';
+          link.rel         = 'noopener noreferrer';
+          link.textContent = 'Browse on GitHub';
+          li.textContent   = `Failed to load releases: ${err.message}. `;
+          li.appendChild(link);
+          li.appendChild(document.createTextNode('.'));
+          statusEl.innerHTML = '';
+          statusEl.appendChild(li);
+        }
+      } finally {
+        sel.disabled = false;
+      }
+    }
+
+    toggle.addEventListener('click', function () {
+      const isHidden = panel.hasAttribute('hidden');
+      if (isHidden) {
+        panel.removeAttribute('hidden');
+        toggle.setAttribute('aria-expanded', 'true');
+        if (!loaded) {
+          loaded = true;
+          loadPage(LEGACY_API_BASE);
+        }
+      } else {
+        panel.setAttribute('hidden', '');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    sel.addEventListener('change', function () {
+      const rel = legacyReleases.find(r => r.tag_name === sel.value);
+      renderLegacyAssets(rel ? rel.assets : []);
+    });
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function () {
+        if (currentPrevUrl) loadPage(currentPrevUrl);
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function () {
+        if (currentNextUrl) loadPage(currentNextUrl);
+      });
     }
   }
 
@@ -200,7 +377,7 @@
   /* page change triggers a clean init.                                  */
   /* ------------------------------------------------------------------ */
   function tryInit() {
-    var releaseLink = document.querySelector(`[href="https://github.com/CellHasher/Beta-Cellhasher/releases"]`)?.parentElement;
+    const releaseLink = document.querySelector(`[href="https://github.com/CellHasher/Beta-Cellhasher/releases"]`)?.parentElement;
     if (releaseLink?.tagName == "LI") {
       releaseLink.innerHTML = `<div id="ch-download-container">
         <!-- Auto-detected primary download — shown by os-detect.js when a match is found -->
@@ -224,12 +401,30 @@
             >.
           </p>
         </div>
-      </div>`
+
+        <!-- Legacy / older releases — lazy-loaded on toggle -->
+        <div id="ch-legacy-downloads">
+          <button id="ch-legacy-toggle" type="button" aria-expanded="false">Legacy Downloads</button>
+          <div id="ch-legacy-panel" hidden>
+            <label for="ch-legacy-select">Select an older version:</label>
+            <select id="ch-legacy-select"></select>
+            <div id="ch-legacy-pagination">
+              <button id="ch-legacy-prev" type="button" hidden>Previous</button>
+              <button id="ch-legacy-next" type="button" hidden>Next</button>
+            </div>
+            <ul id="ch-legacy-assets"></ul>
+          </div>
+        </div>
+      </div>`;
     }
-    var container = document.getElementById('ch-download-container');
+
+    const container = document.getElementById('ch-download-container');
     if (!container) return;
     if (container.getAttribute('data-ch-init')) return; // already initialised
     container.setAttribute('data-ch-init', '1');
+
+    /* Wire up legacy section before the async fetch starts */
+    initLegacy();
 
     /* Use cached result when the user navigates back to this page */
     if (cachedFound) {
@@ -244,15 +439,15 @@
         'user-agent': 'cellhasher-docs'
       }
     })
-    .then(function (r) {
+    .then(r => {
       if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();
     })
-    .then(function (releases) {
+    .then(releases => {
       cachedFound = resolveFromReleases(releases);
       render(cachedFound);
     })
-    .catch(function (err) {
+    .catch(err => {
       console.warn('[os-detect] GitHub API failed:', err.message, '— using baked-in fallback.');
       cachedFound = resolveFromFallback(window.CELLHASHER_RELEASES);
       if (cachedFound) {
@@ -271,11 +466,9 @@
   /* added to the DOM tree and call tryInit when found.                  */
   /* ------------------------------------------------------------------ */
   if (typeof MutationObserver !== 'undefined') {
-    var observer = new MutationObserver(function (mutations) {
-      for (var i = 0; i < mutations.length; i++) {
-        var added = mutations[i].addedNodes;
-        for (var j = 0; j < added.length; j++) {
-          var node = added[j];
+    const observer = new MutationObserver(function (mutations) {
+      for (const mutation of mutations) {
+        for (const node of mutation.addedNodes) {
           if (node.nodeType !== 1) continue; // element nodes only
           if (node.id === 'ch-download-container' ||
               (node.querySelector && (node.querySelector('#ch-download-container') || node.querySelector('[href="https://github.com/CellHasher/Beta-Cellhasher/releases"]')?.parentElement?.tagName === 'LI'))) {
