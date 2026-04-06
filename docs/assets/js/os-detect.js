@@ -239,9 +239,7 @@
       if (rel.draft) continue;
       const opt = document.createElement('option');
       opt.value       = rel.tag_name;
-      opt.textContent = rel.name && rel.name !== rel.tag_name
-        ? `${rel.tag_name} \u2014 ${rel.name}`
-        : rel.tag_name;
+      opt.textContent = rel.tag_name;
       sel.appendChild(opt);
       hasOptions = true;
     }
